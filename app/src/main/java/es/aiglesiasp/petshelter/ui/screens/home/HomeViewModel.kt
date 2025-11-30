@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import es.aiglesiasp.petshelter.domain.model.Pet
 import es.aiglesiasp.petshelter.domain.model.Shelter
 import es.aiglesiasp.petshelter.domain.repositories.PetsRepository
+import es.aiglesiasp.petshelter.domain.repositories.ShelterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val petsRepository: PetsRepository,
+    private val sheltersRepository: ShelterRepository
 ): ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
@@ -26,16 +28,15 @@ class HomeViewModel @Inject constructor(
     )
 
     init {
-        getAllPets()
-        //getAllShelters
+        getAllData()
     }
 
-    private fun getAllPets() {
+    private fun getAllData() {
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch {
             val pets = petsRepository.getPets()
-            _uiState.value = UiState(isLoading = false, pets = pets)
+            val shelters = sheltersRepository.getShelters()
+            _uiState.value = _uiState.value.copy(isLoading = false, pets= pets, shelters= shelters)
         }
-
     }
 }

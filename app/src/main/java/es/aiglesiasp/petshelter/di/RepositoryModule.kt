@@ -5,7 +5,9 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import es.aiglesiasp.petshelter.data.repositories.PetsRepositoryImpl
+import es.aiglesiasp.petshelter.data.repositories.ShelterRepositoryImpl
 import es.aiglesiasp.petshelter.domain.repositories.PetsRepository
+import es.aiglesiasp.petshelter.domain.repositories.ShelterRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -13,5 +15,8 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindPetsRepository(impl: PetsRepositoryImpl): PetsRepository
+
+    @Binds
+    abstract fun binsSheltersRepository(impl: ShelterRepositoryImpl): ShelterRepository
 
 }
