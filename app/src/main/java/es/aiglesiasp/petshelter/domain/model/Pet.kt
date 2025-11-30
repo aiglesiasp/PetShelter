@@ -1,4 +1,4 @@
-package es.aiglesiasp.petshelter.domain
+package es.aiglesiasp.petshelter.domain.model
 
 data class Pet(
     val id: Int,

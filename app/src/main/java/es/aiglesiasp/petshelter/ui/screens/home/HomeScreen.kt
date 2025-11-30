@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -19,8 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import es.aiglesiasp.petshelter.R
-import es.aiglesiasp.petshelter.domain.Pet
-import es.aiglesiasp.petshelter.domain.Shelter
+import es.aiglesiasp.petshelter.domain.model.Pet
+import es.aiglesiasp.petshelter.domain.model.Shelter
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
 
@@ -28,12 +29,12 @@ import es.aiglesiasp.petshelter.ui.common.PSScaffold
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val pets = viewModel.pets
-    val shelters = viewModel.shelters
+    val uiState = viewModel.uiState.collectAsState()
+
 
     HomeContent(
-        pets = pets,
-        shelters = shelters
+        pets = uiState.value.pets,
+        shelters = uiState.value.shelters
     )
 
 }
