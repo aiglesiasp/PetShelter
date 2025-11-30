@@ -6,6 +6,6 @@ data class Pet(
     val raza: String,
     val edad: Int,
     val descripcion: String,
-    val imagenUrl: String,
+    val imagenRes: String,
     val refugioId: Int
 )

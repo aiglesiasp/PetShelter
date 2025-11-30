@@ -15,7 +15,7 @@ data class ShelterLocal(
     val direccion: String,
     val telefono: String,
     val email: String,
-    val imagenUrl: String
+    val imagenRes: String
 )
 
 fun ShelterLocal.toDomain(): Shelter {
@@ -25,6 +25,6 @@ fun ShelterLocal.toDomain(): Shelter {
         direccion = direccion,
         telefono = telefono,
         email = email,
-        imagenUrl = imagenUrl
+        imagenRes = imagenRes
     )
 }

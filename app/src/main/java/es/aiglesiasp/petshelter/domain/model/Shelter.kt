@@ -6,5 +6,5 @@ data class Shelter(
     val direccion: String,
     val telefono: String,
     val email: String,
-    val imagenUrl: String
+    val imagenRes: String
 )

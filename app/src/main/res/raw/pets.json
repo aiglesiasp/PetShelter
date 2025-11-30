@@ -5,7 +5,7 @@
     "raza": "Mestiza",
     "edad": 2,
     "descripcion": "Perra muy cariñosa y juguetona, ideal con familias.",
-    "imagenUrl": "https://example.com/img/luna.jpg",
+    "imagenRes": "perro1",
     "refugioId": 1
     },
     {
@@ -14,7 +14,7 @@
     "raza": "Pastor Alemán",
     "edad": 4,
     "descripcion": "Perro activo, necesita ejercicio diario y estímulo mental.",
-    "imagenUrl": "https://example.com/img/rocky.jpg",
+    "imagenRes": "perro2",
     "refugioId": 1
     },
     {
@@ -23,7 +23,7 @@
     "raza": "Europeo común",
     "edad": 3,
     "descripcion": "Gata tranquila, le encanta dormir al sol y los mimos.",
-    "imagenUrl": "https://example.com/img/misu.jpg",
+    "imagenRes": "perro3",
     "refugioId": 2
     }
 ]

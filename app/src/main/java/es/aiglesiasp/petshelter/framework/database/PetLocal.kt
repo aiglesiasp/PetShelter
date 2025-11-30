@@ -28,7 +28,7 @@ data class PetLocal(
     val raza: String,
     val edad: Int,
     val descripcion: String,
-    val imagenUrl: String,
+    val imagenRes: String,
 
     // Relación N:1 → cada animal pertenece a un refugio
     val refugioId: Int
@@ -41,7 +41,7 @@ fun PetLocal.toDomain(): Pet {
         raza = raza,
         edad = edad,
         descripcion = descripcion,
-        imagenUrl = imagenUrl,
+        imagenRes = imagenRes,
         refugioId = refugioId
     )
 }
