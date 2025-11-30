@@ -1,5 +1,7 @@
 package es.aiglesiasp.petshelter.ui.screens.home
 
+import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,24 +15,43 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import es.aiglesiasp.petshelter.R
+
 
 @Composable
 fun HomeItem(
     title: String,
     subTitle: String,
-    imageUrl: String,
+    imagenRes: String,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+
+    val imageResId = remember(imagenRes) {
+        context.resources.getIdentifier(
+            imagenRes,
+            "drawable",
+            context.packageName
+        )
+    }
+
+    // DEBUG: ver qué está llegando realmente
+    LaunchedEffect(imagenRes) {
+        Log.d("HomeItem", "imagenRes='$imagenRes', imageResId=$imageResId")
+    }
+
     Card(
-        modifier = modifier
-            .width(220.dp),
+        modifier = modifier.width(220.dp),
         shape = RoundedCornerShape(24.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
@@ -38,8 +59,16 @@ fun HomeItem(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            AsyncImage(
-                model = imageUrl,
+
+            val finalResId = if (imageResId != 0) {
+                imageResId
+            } else {
+                // fallback para evitar el crash si no lo encuentra
+                R.drawable.ic_launcher_background // o un placeholder si quieres
+            }
+
+            Image(
+                painter = painterResource(id = finalResId),
                 contentDescription = title,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -71,6 +100,6 @@ private fun HomeItemPreview() {
     HomeItem(
         title = "Title",
         subTitle = "Sub Title",
-        imageUrl = "https://picsum.photos/200/300",
+        imagenRes = "perro1",
     )
 }

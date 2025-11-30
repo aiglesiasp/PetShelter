@@ -1,5 +1,6 @@
 package es.aiglesiasp.petshelter.ui.screens.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +11,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -27,37 +27,39 @@ import es.aiglesiasp.petshelter.ui.common.PSScaffold
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    navigateToPetDetail: (Int) -> Unit,
+    navigateToShelterDetail: (Int) -> Unit
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
-
     HomeContent(
         pets = uiState.value.pets,
-        shelters = uiState.value.shelters
+        shelters = uiState.value.shelters,
+        navigateToPetDetail = navigateToPetDetail,
+        navigateToShelterDetail = navigateToShelterDetail
     )
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun HomeContent(
     pets: List<Pet>,
-    shelters: List<Shelter>
+    shelters: List<Shelter>,
+    navigateToPetDetail: (Int) -> Unit,
+    navigateToShelterDetail: (Int) -> Unit,
 ) {
     ScreenAppTheme {
         PSScaffold(
-           modifier = Modifier.fillMaxSize(),
-            topBar = {
-                TopAppBar(
-                    title = { Text(text = stringResource(id = R.string.app_name)) }
-                )
-            }
+            modifier = Modifier.fillMaxSize(),
+            topBarTitle = stringResource(id = R.string.app_name),
         ) { paddingValues ->
             HomeBody(
                 pets = pets,
                 shelters = shelters,
-                modifier = Modifier.padding(paddingValues)
+                modifier = Modifier.padding(paddingValues),
+                navigateToPetDetail = navigateToPetDetail,
+                navigateToShelterDetail = navigateToShelterDetail
             )
         }
     }
@@ -67,7 +69,9 @@ private fun HomeContent(
 fun HomeBody(
     pets: List<Pet>,
     shelters: List<Shelter>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToPetDetail: (Int) -> Unit,
+    navigateToShelterDetail: (Int) -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -99,7 +103,8 @@ fun HomeBody(
                     HomeItem(
                         title = pet.nombre,
                         subTitle = "${pet.raza},${pet.edad} años",
-                        imageUrl = pet.imagenUrl
+                        imagenRes = pet.imagenRes,
+                        modifier = Modifier.clickable{ navigateToPetDetail(pet.id)}
                     )
                 }
             }
@@ -124,7 +129,8 @@ fun HomeBody(
                     HomeItem(
                         title = shelter.nombre,
                         subTitle = shelter.direccion,
-                        imageUrl = shelter.imagenUrl,
+                        imagenRes = shelter.imagenRes,
+                        modifier = Modifier.clickable{ navigateToShelterDetail(shelter.id)}
                     )
                 }
             }
@@ -143,7 +149,7 @@ private fun HomeBody_Preview() {
             raza = "Golden Retriever",
             edad = 2,
             descripcion = "Un perro cariñoso y leal.",
-            imagenUrl = "https://picsum.photos/seed/dog1/600/600",
+            imagenRes = "perro1",
             refugioId = 0
         ),
         Pet(
@@ -152,7 +158,7 @@ private fun HomeBody_Preview() {
             raza = "Whiskers",
             edad = 1,
             descripcion = "Un gato cariñoso y leal.",
-            imagenUrl = "https://picsum.photos/seed/dog1/600/600",
+            imagenRes = "perro2",
             refugioId = 0
         ),
         Pet(
@@ -161,7 +167,7 @@ private fun HomeBody_Preview() {
             raza = "German Shepherd",
             edad = 3,
             descripcion = "Un perro grande.",
-            imagenUrl = "https://picsum.photos/seed/dog1/600/600",
+            imagenRes = "https://picsum.photos/seed/dog1/600/600",
             refugioId = 0
         )
     )
@@ -173,7 +179,7 @@ private fun HomeBody_Preview() {
             direccion = "123 Main St, Anytown",
             telefono = "123-456-7890",
             email = "",
-            imagenUrl = "https://picsum.photos/seed/shelter1/600/600"
+            imagenRes = "refugio1"
         ),
         Shelter(
             id = 0,
@@ -181,12 +187,14 @@ private fun HomeBody_Preview() {
             direccion = "456 Oak Ave, Springfield",
             telefono = "123-456-7890",
             email = "",
-            imagenUrl = "https://picsum.photos/seed/shelter2/600/600"
+            imagenRes = "https://picsum.photos/seed/shelter2/600/600"
         )
     )
 
     HomeContent(
         pets = samplePets,
-        shelters = sampleShelters
+        shelters = sampleShelters,
+        navigateToPetDetail = {},
+        navigateToShelterDetail = {}
     )
 }

@@ -15,7 +15,13 @@ object Home
 object PetList
 
 @Serializable
-object PetDetail
+object ShelterList
+
+@Serializable
+data class PetDetail(val petId: Int)
+
+@Serializable
+data class ShelterDetail(val shelterId: Int)
 
 @Serializable
 object Profile
