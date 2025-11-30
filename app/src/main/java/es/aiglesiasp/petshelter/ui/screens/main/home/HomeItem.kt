@@ -1,4 +1,4 @@
-package es.aiglesiasp.petshelter.ui.screens.home
+package es.aiglesiasp.petshelter.ui.screens.main.home
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -43,11 +43,6 @@ fun HomeItem(
             "drawable",
             context.packageName
         )
-    }
-
-    // DEBUG: ver qué está llegando realmente
-    LaunchedEffect(imagenRes) {
-        Log.d("HomeItem", "imagenRes='$imagenRes', imageResId=$imageResId")
     }
 
     Card(

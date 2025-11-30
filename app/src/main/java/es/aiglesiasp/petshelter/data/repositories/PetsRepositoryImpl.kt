@@ -13,4 +13,9 @@ class PetsRepositoryImpl @Inject constructor(
         val result = petsLocalDataSource.getPets()
         return result.map { it.toDomain() }
     }
+
+    override suspend fun getPetById(id: Int): Pet? {
+        val result = petsLocalDataSource.getPetById(id)
+        return result?.toDomain()
+    }
 }

@@ -1,4 +1,4 @@
-package es.aiglesiasp.petshelter.ui.screens.home
+package es.aiglesiasp.petshelter.ui.screens.main.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,47 +18,38 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavController
 import es.aiglesiasp.petshelter.R
 import es.aiglesiasp.petshelter.domain.model.Pet
 import es.aiglesiasp.petshelter.domain.model.Shelter
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
+import es.aiglesiasp.petshelter.ui.navigation.PetDetail
+import es.aiglesiasp.petshelter.ui.navigation.ShelterDetail
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    navigateToPetDetail: (Int) -> Unit,
-    navigateToShelterDetail: (Int) -> Unit
+    navController: NavController,
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
-    HomeContent(
-        pets = uiState.value.pets,
-        shelters = uiState.value.shelters,
-        navigateToPetDetail = navigateToPetDetail,
-        navigateToShelterDetail = navigateToShelterDetail
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun HomeContent(
-    pets: List<Pet>,
-    shelters: List<Shelter>,
-    navigateToPetDetail: (Int) -> Unit,
-    navigateToShelterDetail: (Int) -> Unit,
-) {
     ScreenAppTheme {
         PSScaffold(
+            navController = navController,
             modifier = Modifier.fillMaxSize(),
             topBarTitle = stringResource(id = R.string.app_name),
         ) { paddingValues ->
             HomeBody(
-                pets = pets,
-                shelters = shelters,
+                pets = uiState.value.pets,
+                shelters = uiState.value.shelters,
                 modifier = Modifier.padding(paddingValues),
-                navigateToPetDetail = navigateToPetDetail,
-                navigateToShelterDetail = navigateToShelterDetail
+                navigateToPetDetail = { petId ->
+                    navController.navigate(PetDetail(petId = petId))
+                },
+                navigateToShelterDetail = { shelterId ->
+                    navController.navigate(ShelterDetail(shelterId = shelterId))
+                }
             )
         }
     }
@@ -81,11 +71,10 @@ fun HomeBody(
             start = 16.dp,
             end = 16.dp,
             top = 16.dp,
-            bottom = 96.dp   // espacio para tu bottom bar
+            bottom = 96.dp
         )
     ) {
 
-        // Available Pets
         item {
             Text(
                 text = "Available Pets",
@@ -110,7 +99,6 @@ fun HomeBody(
             }
         }
 
-        // Featured Shelters
         item {
             Text(
                 text = "Featured Shelters",
@@ -191,7 +179,7 @@ private fun HomeBody_Preview() {
         )
     )
 
-    HomeContent(
+    HomeBody(
         pets = samplePets,
         shelters = sampleShelters,
         navigateToPetDetail = {},

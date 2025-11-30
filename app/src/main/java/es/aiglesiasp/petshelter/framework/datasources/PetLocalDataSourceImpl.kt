@@ -11,4 +11,9 @@ class PetLocalDataSourceImpl @Inject constructor(
     override suspend fun getPets(): List<PetLocal> {
         return petDao.getPets()
     }
+
+    override suspend fun getPetById(id: Int): PetLocal? {
+        return petDao.getPetById(id)
+
+    }
 }

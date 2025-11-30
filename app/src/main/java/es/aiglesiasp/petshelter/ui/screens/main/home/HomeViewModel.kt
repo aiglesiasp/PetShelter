@@ -1,4 +1,4 @@
-package es.aiglesiasp.petshelter.ui.screens.home
+package es.aiglesiasp.petshelter.ui.screens.main.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

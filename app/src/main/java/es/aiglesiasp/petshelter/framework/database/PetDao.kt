@@ -10,6 +10,9 @@ interface PetDao {
     @Query("SELECT * FROM pets")
     suspend fun getPets(): List<PetLocal>
 
+    @Query("SELECT * FROM pets WHERE id = :id" )
+    suspend fun getPetById(id: Int): PetLocal?
+
     @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertPets(characters: List<PetLocal>)
 

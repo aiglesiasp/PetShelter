@@ -4,4 +4,5 @@ import es.aiglesiasp.petshelter.domain.model.Pet
 
 interface PetsRepository {
     suspend fun getPets(): List<Pet>
+    suspend fun getPetById(id: Int): Pet?
 }

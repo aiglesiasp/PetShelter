@@ -4,24 +4,22 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 object Login
-
 @Serializable
 object Register
 
 @Serializable
 object Home
+@Serializable
+object Favorite
+@Serializable
+object Profile
 
 @Serializable
 object PetList
-
-@Serializable
-object ShelterList
-
 @Serializable
 data class PetDetail(val petId: Int)
 
 @Serializable
-data class ShelterDetail(val shelterId: Int)
-
+object ShelterList
 @Serializable
-object Profile
+data class ShelterDetail(val shelterId: Int)

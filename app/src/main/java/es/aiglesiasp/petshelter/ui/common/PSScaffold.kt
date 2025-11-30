@@ -27,19 +27,16 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import es.aiglesiasp.petshelter.R
+import androidx.navigation.NavController
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PSScaffold(
+    navController: NavController,
     modifier: Modifier = Modifier,
     topBarTitle: String,
     showArrowBack: Boolean = false,
-    onArrowBackClick: () -> Unit = {},
-    bottomBar: @Composable () -> Unit= {},
     snackbarHost: @Composable () -> Unit= {},
     floatingActionButton: @Composable () -> Unit= {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
@@ -51,26 +48,11 @@ fun PSScaffold(
     Scaffold(
         modifier = modifier,
         topBar = {
-            CenterAlignedTopAppBar(
-                navigationIcon = {
-                    if (showArrowBack) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Error",
-                            modifier = Modifier.size(40.dp).clickable{ onArrowBackClick() }
-                        )
-                    }
-
-                },
-                title = {
-                    Text(
-                        text = topBarTitle,
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                }
-            )
+            PSTopAppBar(showArrowBack, navController, topBarTitle)
         },
-        bottomBar = bottomBar,
+        bottomBar = {
+          PSBottomAppBar(navController = navController)
+        },
         snackbarHost = snackbarHost,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
