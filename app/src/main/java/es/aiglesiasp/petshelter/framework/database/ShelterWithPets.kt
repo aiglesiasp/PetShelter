@@ -1,4 +1,4 @@
-package es.aiglesiasp.petshelter.framework
+package es.aiglesiasp.petshelter.framework.database
 
 import androidx.room.Embedded
 import androidx.room.Relation

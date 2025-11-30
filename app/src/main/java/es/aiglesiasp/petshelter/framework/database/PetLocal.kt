@@ -1,10 +1,10 @@
-package es.aiglesiasp.petshelter.framework
+package es.aiglesiasp.petshelter.framework.database
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import es.aiglesiasp.petshelter.domain.Pet
+import es.aiglesiasp.petshelter.domain.model.Pet
 import kotlinx.serialization.Serializable
 
 @Serializable
