@@ -3,11 +3,16 @@ package es.aiglesiasp.petshelter.ui.screens.main.home
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +30,9 @@ import es.aiglesiasp.petshelter.domain.model.Shelter
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
 import es.aiglesiasp.petshelter.ui.navigation.PetDetail
+import es.aiglesiasp.petshelter.ui.navigation.PetList
 import es.aiglesiasp.petshelter.ui.navigation.ShelterDetail
+import es.aiglesiasp.petshelter.ui.navigation.ShelterList
 
 @Composable
 fun HomeScreen(
@@ -44,6 +51,8 @@ fun HomeScreen(
                 pets = uiState.value.pets,
                 shelters = uiState.value.shelters,
                 modifier = Modifier.padding(paddingValues),
+                navigateToPetList = { navController.navigate(PetList) },
+                navigateToShelterList = { navController.navigate(ShelterList) },
                 navigateToPetDetail = { petId ->
                     navController.navigate(PetDetail(petId = petId))
                 },
@@ -60,6 +69,8 @@ fun HomeBody(
     pets: List<Pet>,
     shelters: List<Shelter>,
     modifier: Modifier = Modifier,
+    navigateToPetList: () -> Unit,
+    navigateToShelterList: () -> Unit,
     navigateToPetDetail: (Int) -> Unit,
     navigateToShelterDetail: (Int) -> Unit
 ) {
@@ -75,55 +86,93 @@ fun HomeBody(
         )
     ) {
 
-        item {
-            Text(
-                text = "Available Pets",
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontWeight = FontWeight.SemiBold
-                )
+        item { PetTitle(navigateToPetList) }
+        item { PetItems(pets, navigateToPetDetail) }
+        item { ShelterTitle(navigateToShelterList) }
+        item { ShelterItems(shelters, navigateToShelterDetail) }
+    }
+}
+
+@Composable
+private fun PetTitle(navigateToPetList: () -> Unit) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Text(
+            text = "Available Pets",
+            style = MaterialTheme.typography.headlineSmall.copy(
+                fontWeight = FontWeight.SemiBold
             )
-        }
+        )
 
-        item {
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(pets) { pet ->
-                    HomeItem(
-                        title = pet.nombre,
-                        subTitle = "${pet.raza},${pet.edad} años",
-                        imagenRes = pet.imagenRes,
-                        modifier = Modifier.clickable{ navigateToPetDetail(pet.id)}
-                    )
-                }
-            }
-        }
+        ArrowForwardIcon(navigateToPetList)
+    }
+}
 
-        item {
-            Text(
-                text = "Featured Shelters",
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontWeight = FontWeight.SemiBold
-                ),
-                modifier = Modifier.padding(top = 8.dp)
+@Composable
+private fun PetItems(
+    pets: List<Pet>,
+    navigateToPetDetail: (Int) -> Unit
+) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(pets) { pet ->
+            HomeItem(
+                title = pet.nombre,
+                subTitle = "${pet.raza},${pet.edad} años",
+                imagenRes = pet.imagenRes,
+                modifier = Modifier.clickable { navigateToPetDetail(pet.id) }
             )
-        }
-
-        item {
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(shelters) { shelter ->
-                    HomeItem(
-                        title = shelter.nombre,
-                        subTitle = shelter.direccion,
-                        imagenRes = shelter.imagenRes,
-                        modifier = Modifier.clickable{ navigateToShelterDetail(shelter.id)}
-                    )
-                }
-            }
         }
     }
+}
+
+@Composable
+private fun ShelterTitle(navigateToShelterList: () -> Unit) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Text(
+            text = "Featured Shelters",
+            style = MaterialTheme.typography.headlineSmall.copy(
+                fontWeight = FontWeight.SemiBold
+            ),
+            modifier = Modifier.padding(top = 8.dp)
+        )
+        ArrowForwardIcon(navigateToShelterList)
+    }
+}
+
+
+@Composable
+private fun ShelterItems(
+    shelters: List<Shelter>,
+    navigateToShelterDetail: (Int) -> Unit
+) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(shelters) { shelter ->
+            HomeItem(
+                title = shelter.nombre,
+                subTitle = shelter.direccion,
+                imagenRes = shelter.imagenRes,
+                modifier = Modifier.clickable { navigateToShelterDetail(shelter.id) }
+            )
+        }
+    }
+}
+
+@Composable
+private fun ArrowForwardIcon(onIconClick: () -> Unit) {
+    Icon(
+        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+        contentDescription = "Go",
+        modifier = Modifier
+            .size(32.dp)
+            .clickable { onIconClick() }
+    )
 }
 
 
@@ -182,6 +231,8 @@ private fun HomeBody_Preview() {
     HomeBody(
         pets = samplePets,
         shelters = sampleShelters,
+        navigateToPetList = {},
+        navigateToShelterList = {},
         navigateToPetDetail = {},
         navigateToShelterDetail = {}
     )
