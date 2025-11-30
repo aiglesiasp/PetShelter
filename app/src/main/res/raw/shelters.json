@@ -1,0 +1,18 @@
+[
+    {
+    "id": 1,
+    "nombre": "Refugio Huellas",
+    "direccion": "C/ Sol 123, Barcelona",
+    "telefono": "+34 600 123 456",
+    "email": "contacto@huellas.org",
+    "imagenUrl": "https://example.com/img/refugio_huellas.jpg"
+    },
+    {
+    "id": 2,
+    "nombre": "Protectora Amigos Peludos",
+    "direccion": "Av. Libertad 45, Madrid",
+    "telefono": "+34 611 987 654",
+    "email": "info@amigospeludos.org",
+    "imagenUrl": "https://example.com/img/amigos_peludos.jpg"
+    }
+]

@@ -1,0 +1,29 @@
+[
+    {
+    "id": 1,
+    "nombre": "Luna",
+    "raza": "Mestiza",
+    "edad": 2,
+    "descripcion": "Perra muy cariñosa y juguetona, ideal con familias.",
+    "imagenUrl": "https://example.com/img/luna.jpg",
+    "refugioId": 1
+    },
+    {
+    "id": 2,
+    "nombre": "Rocky",
+    "raza": "Pastor Alemán",
+    "edad": 4,
+    "descripcion": "Perro activo, necesita ejercicio diario y estímulo mental.",
+    "imagenUrl": "https://example.com/img/rocky.jpg",
+    "refugioId": 1
+    },
+    {
+    "id": 3,
+    "nombre": "Misu",
+    "raza": "Europeo común",
+    "edad": 3,
+    "descripcion": "Gata tranquila, le encanta dormir al sol y los mimos.",
+    "imagenUrl": "https://example.com/img/misu.jpg",
+    "refugioId": 2
+    }
+]
