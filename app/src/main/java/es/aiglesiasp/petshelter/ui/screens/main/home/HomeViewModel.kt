@@ -28,15 +28,23 @@ class HomeViewModel @Inject constructor(
     )
 
     init {
-        getAllData()
+        getPets()
+        getShelters()
     }
 
-    private fun getAllData() {
+    private fun getPets() {
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch {
             val pets = petsRepository.getPets()
+            _uiState.value = _uiState.value.copy(isLoading = false, pets= pets)
+        }
+    }
+
+    private fun getShelters() {
+        _uiState.value = UiState(isLoading = true)
+        viewModelScope.launch {
             val shelters = sheltersRepository.getShelters()
-            _uiState.value = _uiState.value.copy(isLoading = false, pets= pets, shelters= shelters)
+            _uiState.value = _uiState.value.copy(isLoading = false, shelters= shelters)
         }
     }
 }

@@ -2,9 +2,9 @@ package es.aiglesiasp.petshelter.ui.screens.main.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -76,14 +77,8 @@ fun HomeBody(
 ) {
     LazyColumn(
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp),
-        contentPadding = PaddingValues(
-            start = 16.dp,
-            end = 16.dp,
-            top = 16.dp,
-            bottom = 96.dp
-        )
     ) {
 
         item { PetTitle(navigateToPetList) }
@@ -96,11 +91,13 @@ fun HomeBody(
 @Composable
 private fun PetTitle(navigateToPetList: () -> Unit) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = "Available Pets",
-            style = MaterialTheme.typography.headlineSmall.copy(
+            style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.SemiBold
             )
         )
@@ -119,8 +116,8 @@ private fun PetItems(
     ) {
         items(pets) { pet ->
             HomeItem(
-                title = pet.nombre,
-                subTitle = "${pet.raza},${pet.edad} años",
+                nombre = pet.nombre,
+                descripcion = "${pet.raza}, ${pet.edad}",
                 imagenRes = pet.imagenRes,
                 modifier = Modifier.clickable { navigateToPetDetail(pet.id) }
             )
@@ -131,11 +128,13 @@ private fun PetItems(
 @Composable
 private fun ShelterTitle(navigateToShelterList: () -> Unit) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = "Featured Shelters",
-            style = MaterialTheme.typography.headlineSmall.copy(
+            style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.SemiBold
             ),
             modifier = Modifier.padding(top = 8.dp)
@@ -155,8 +154,8 @@ private fun ShelterItems(
     ) {
         items(shelters) { shelter ->
             HomeItem(
-                title = shelter.nombre,
-                subTitle = shelter.direccion,
+                nombre = shelter.nombre,
+                descripcion = shelter.direccion,
                 imagenRes = shelter.imagenRes,
                 modifier = Modifier.clickable { navigateToShelterDetail(shelter.id) }
             )
@@ -184,28 +183,31 @@ private fun HomeBody_Preview() {
             id = 0,
             nombre = "Buddy",
             raza = "Golden Retriever",
-            edad = 2,
+            tipo = "Perro",
+            edad = "2 años",
             descripcion = "Un perro cariñoso y leal.",
             imagenRes = "perro1",
-            refugioId = 0
+            refugio = "Refugio 1"
         ),
         Pet(
             id = 1,
             nombre = "Whiskers",
             raza = "Whiskers",
-            edad = 1,
+            tipo = "Perro",
+            edad = "10 meses",
             descripcion = "Un gato cariñoso y leal.",
             imagenRes = "perro2",
-            refugioId = 0
+            refugio = "Refugio 2"
         ),
         Pet(
             id = 2,
             nombre = "Max",
             raza = "German Shepherd",
-            edad = 3,
+            tipo = "Perro",
+            edad = "3 años",
             descripcion = "Un perro grande.",
             imagenRes = "https://picsum.photos/seed/dog1/600/600",
-            refugioId = 0
+            refugio = "Refugio 3"
         )
     )
 
