@@ -1,37 +1,21 @@
 package es.aiglesiasp.petshelter.framework.database
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
 import androidx.room.PrimaryKey
 import es.aiglesiasp.petshelter.domain.model.Pet
 import kotlinx.serialization.Serializable
 
 @Serializable
-@Entity(
-    tableName = "pets",
-    foreignKeys = [
-        ForeignKey(
-            entity = ShelterLocal::class,
-            parentColumns = ["id"],
-            childColumns = ["refugioId"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ],
-    indices = [Index("refugioId")]
-)
+@Entity(tableName = "pets")
 data class PetLocal(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-
     val nombre: String,
     val raza: String,
-    val edad: Int,
+    val edad: String,
     val descripcion: String,
     val imagenRes: String,
-
-    // Relación N:1 → cada animal pertenece a un refugio
-    val refugioId: Int
+    val refugio: String
 )
 
 fun PetLocal.toDomain(): Pet {
@@ -42,6 +26,6 @@ fun PetLocal.toDomain(): Pet {
         edad = edad,
         descripcion = descripcion,
         imagenRes = imagenRes,
-        refugioId = refugioId
+        refugio = refugio
     )
 }

@@ -18,7 +18,4 @@ interface PetDao {
 
     @Query("SELECT * FROM pets WHERE nombre = :name" )
     suspend fun getPetByName(name: String): List<PetLocal>
-
-    @Query("SELECT * FROM pets WHERE refugioId = :shelterId")
-    suspend fun getPetsByShelterId(shelterId: Int): List<PetLocal>
 }

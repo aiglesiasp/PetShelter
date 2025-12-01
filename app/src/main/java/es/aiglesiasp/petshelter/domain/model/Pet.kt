@@ -4,8 +4,8 @@ data class Pet(
     val id: Int,
     val nombre: String,
     val raza: String,
-    val edad: Int,
+    val edad: String,
     val descripcion: String,
     val imagenRes: String,
-    val refugioId: Int
+    val refugio: String
 )

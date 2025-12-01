@@ -3,27 +3,27 @@
     "id": 1,
     "nombre": "Luna",
     "raza": "Mestiza",
-    "edad": 2,
+    "edad": "2 años",
     "descripcion": "Perra muy cariñosa y juguetona, ideal con familias.",
     "imagenRes": "perro1",
-    "refugioId": 1
+    "refugio": "Refugio 1"
     },
     {
     "id": 2,
     "nombre": "Rocky",
     "raza": "Pastor Alemán",
-    "edad": 4,
+    "edad": "4 meses",
     "descripcion": "Perro activo, necesita ejercicio diario y estímulo mental.",
     "imagenRes": "perro2",
-    "refugioId": 1
+    "refugio": "Refugio 2"
     },
     {
     "id": 3,
     "nombre": "Misu",
     "raza": "Europeo común",
-    "edad": 3,
+    "edad": "10 meses",
     "descripcion": "Gata tranquila, le encanta dormir al sol y los mimos.",
     "imagenRes": "perro3",
-    "refugioId": 2
+    "refugio": "Refugio 3"
     }
 ]
