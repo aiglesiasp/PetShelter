@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PetsListViewModel@Inject constructor(
-    private val petsRepository: PetsRepository
-): ViewModel()  {
+class PetsListViewModel @Inject constructor(
+private val petsRepository: PetsRepository
+): ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> get() = _uiState

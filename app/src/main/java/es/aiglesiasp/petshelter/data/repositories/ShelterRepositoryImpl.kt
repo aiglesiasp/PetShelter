@@ -13,4 +13,9 @@ class ShelterRepositoryImpl @Inject constructor(
         val result = shelterLocalDataSource.getShelters()
         return result.map { it.toDomain() }
     }
+
+    override suspend fun getShelterById(shelterId: Int): Shelter? {
+        val result = shelterLocalDataSource.getShelterById(shelterId)
+        return result?.toDomain()
+    }
 }

@@ -1,18 +1,18 @@
-package es.aiglesiasp.petshelter.ui.screens.pets.petsDetail
+package es.aiglesiasp.petshelter.ui.screens.shelters.sheltersDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import es.aiglesiasp.petshelter.domain.model.Pet
-import es.aiglesiasp.petshelter.domain.repositories.PetsRepository
+import es.aiglesiasp.petshelter.domain.model.Shelter
+import es.aiglesiasp.petshelter.domain.repositories.ShelterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PetsDetailViewModel @Inject constructor(
-    private val petsRepository: PetsRepository
+class SheltersDetailViewModel @Inject constructor(
+    private val sheltersRepository: ShelterRepository
 ): ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
@@ -20,14 +20,14 @@ class PetsDetailViewModel @Inject constructor(
 
     data class UiState(
         val isLoading: Boolean = true,
-        val pet: Pet? = null
+        val shelter: Shelter? = null
     )
 
-    fun loadData(petId: Int) {
+    fun loadData(shelterId: Int) {
         _uiState.value = _uiState.value.copy(isLoading = true)
         viewModelScope.launch {
-            val pet = petsRepository.getPetById(petId)
-            _uiState.value = _uiState.value.copy(isLoading = false, pet = pet)
+            val shelter = sheltersRepository.getShelterById(shelterId)
+            _uiState.value = _uiState.value.copy(isLoading = false, shelter = shelter)
         }
     }
 }

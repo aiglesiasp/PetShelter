@@ -4,4 +4,5 @@ import es.aiglesiasp.petshelter.domain.model.Shelter
 
 interface ShelterRepository {
     suspend fun getShelters(): List<Shelter>
+    suspend fun getShelterById(shelterId: Int): Shelter?
 }

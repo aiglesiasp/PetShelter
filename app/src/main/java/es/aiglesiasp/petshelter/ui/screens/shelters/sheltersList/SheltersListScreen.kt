@@ -1,7 +1,6 @@
-package es.aiglesiasp.petshelter.ui.screens.pets.petsList
+package es.aiglesiasp.petshelter.ui.screens.shelters.sheltersList
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,7 +8,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -20,22 +18,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import es.aiglesiasp.petshelter.R
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
-import es.aiglesiasp.petshelter.ui.navigation.PetDetail
+import es.aiglesiasp.petshelter.ui.navigation.ShelterDetail
 
 @Composable
-fun PetsListScreen(
+fun SheltersListScreen(
     navController: NavController,
-    vm: PetsListViewModel = hiltViewModel(),
+    vm: SheltersListViewModel = hiltViewModel()
 ) {
     val uiState = vm.uiState.collectAsState()
 
@@ -54,9 +50,8 @@ fun PetsListScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.Start
             ) {
-                // Buscador
                 item {
-                    SearchPetItem(
+                    SearchShelterItem(
                         searchValue = uiState.value.searchQuery,
                         onSearchClick = { newValue ->
                             vm.onSearchClick(newValue)
@@ -64,20 +59,9 @@ fun PetsListScreen(
                     )
                 }
 
-                // Chips de filtro
-                item {
-                    FiltersChips(
-                        selected = uiState.value.selectedFilter,
-                        onFilterClick = { filter ->
-                            vm.onFilterClick(filter)
-                        }
-                    )
-                }
-
-                // Título de sección
                 item {
                     Text(
-                        text = "Animales cerca de ti",
+                        text = "Refugios cerca de ti",
                         style = MaterialTheme.typography.headlineSmall.copy(
                             fontWeight = FontWeight.Bold
                         ),
@@ -86,12 +70,12 @@ fun PetsListScreen(
                 }
 
                 // Lista de animales
-                items(uiState.value.pets) { pet ->
-                    PetsListItem(
+                items(uiState.value.shelters) { shelter ->
+                    SheltersListItem(
                         modifier = Modifier.padding(top = 8.dp),
-                        pet = pet,
-                        onPetClick = { petId ->
-                            navController.navigate(PetDetail(petId))
+                        shelter = shelter,
+                        onShelterClick = { shelterId ->
+                            navController.navigate(ShelterDetail(shelterId))
                         }
                     )
                 }
@@ -101,7 +85,7 @@ fun PetsListScreen(
 }
 
 @Composable
-fun SearchPetItem(searchValue: String, onSearchClick: (String) -> Unit) {
+fun SearchShelterItem(searchValue: String, onSearchClick: (String) -> Unit) {
     OutlinedTextField(
         value = searchValue,
         onValueChange = { value ->
@@ -114,7 +98,7 @@ fun SearchPetItem(searchValue: String, onSearchClick: (String) -> Unit) {
             )
         },
         placeholder = {
-            Text(text = "Buscar por nombre, raza…")
+            Text(text = "Buscar por nombre...")
         },
         modifier = Modifier.fillMaxSize(),
         shape = RoundedCornerShape(24.dp),
@@ -128,58 +112,4 @@ fun SearchPetItem(searchValue: String, onSearchClick: (String) -> Unit) {
             unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
         )
     )
-}
-
-@Composable
-private fun FiltersChips(
-    selected: Filter,
-    onFilterClick: (Filter) -> Unit
-) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier.padding(top = 8.dp)
-    ) {
-        FilterChip(
-            selected = selected == Filter.ALL,
-            onClick = { onFilterClick(Filter.ALL) },
-            label = {
-                Text(Filter.ALL.value)
-            }
-        )
-
-        FilterChip(
-            selected = selected == Filter.DOGS,
-            onClick = { onFilterClick(Filter.DOGS) },
-            label = {
-                Text(Filter.DOGS.value)
-            }
-        )
-
-        FilterChip(
-            selected = selected == Filter.CATS,
-            onClick = { onFilterClick(Filter.CATS) },
-            label = {
-                Text(Filter.CATS.value)
-            }
-        )
-
-        FilterChip(
-            selected = selected == Filter.OTHERS,
-            onClick = { onFilterClick(Filter.OTHERS) },
-            label = {
-                Text(Filter.OTHERS.value)
-            }
-        )
-    }
-}
-
-enum class Filter(val value: String) {
-    ALL("Todos"), DOGS("Perros"), CATS("Gatos"), OTHERS("Otros")
-}
-
-@Preview
-@Composable
-fun PetsListScreenPreview() {
-    PetsListScreen(
-        navController = NavController(LocalContext.current))
 }

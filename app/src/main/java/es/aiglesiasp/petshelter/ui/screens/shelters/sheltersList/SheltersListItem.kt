@@ -1,4 +1,4 @@
-package es.aiglesiasp.petshelter.ui.screens.pets.petsList
+package es.aiglesiasp.petshelter.ui.screens.shelters.sheltersList
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -6,8 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -25,22 +24,21 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import es.aiglesiasp.petshelter.R
-import es.aiglesiasp.petshelter.domain.model.Pet
+import es.aiglesiasp.petshelter.domain.model.Shelter
 
 @Composable
-fun PetsListItem(
-    pet: Pet,
+fun SheltersListItem(
+    shelter: Shelter,
     modifier: Modifier = Modifier,
-    onPetClick: (Int) -> Unit
+    onShelterClick: (Int) -> Unit
 ) {
     val context = LocalContext.current
 
-    val imageResId = remember(pet.imagenRes) {
+    val imageResId = remember(shelter.imagenRes) {
         context.resources.getIdentifier(
-            pet.imagenRes,
+            shelter.imagenRes,
             "drawable",
             context.packageName
         )
@@ -54,75 +52,52 @@ fun PetsListItem(
     }
 
     Card(
-        modifier = modifier.fillMaxWidth().height(180.dp).clickable{ onPetClick(pet.id) },
+        modifier = modifier.fillMaxSize().clickable{ onShelterClick(shelter.id) },
         shape = RoundedCornerShape(24.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
                 modifier = modifier.padding(16.dp).weight(1f),
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = pet.nombre,
-                    style = MaterialTheme.typography.titleLarge.copy(
+                    text = shelter.nombre,
+                    style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.SemiBold
                     )
                 )
                 Text(
-                    text = pet.edad,
+                    text = shelter.direccion,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
-                    text = pet.raza,
+                    text = shelter.telefono,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
-                    text = pet.refugio,
+                    text = shelter.email,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
             }
-
             Spacer(modifier = Modifier.width(16.dp))
-
             Image(
                 painter = painterResource(id = finalResId),
-                contentDescription = pet.nombre,
+                contentDescription = shelter.nombre,
                 modifier = Modifier
-                    .fillMaxHeight().width(200.dp)
+                    .height(200.dp).width(200.dp)
                     .padding(16.dp)
                     .clip(RoundedCornerShape(20.dp)),
                 contentScale = ContentScale.Crop
             )
         }
-
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PetsListItemPreview() {
-
-    val mockPet = Pet(
-        id = 0,
-        nombre = "Max",
-        raza = "Labrador Retriever",
-        tipo = "Perro",
-        edad = "2 años",
-        descripcion = "",
-        imagenRes = "perro1",
-        refugio = "Refugio 1",
-    )
-    PetsListItem(
-        pet = mockPet,
-        onPetClick = {}
-    )
 }

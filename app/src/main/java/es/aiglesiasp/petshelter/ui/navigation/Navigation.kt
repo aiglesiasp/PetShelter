@@ -10,8 +10,8 @@ import es.aiglesiasp.petshelter.ui.screens.main.home.HomeScreen
 import es.aiglesiasp.petshelter.ui.screens.main.profile.ProfileScreen
 import es.aiglesiasp.petshelter.ui.screens.pets.petsDetail.PetsDetailScreen
 import es.aiglesiasp.petshelter.ui.screens.pets.petsList.PetsListScreen
-import es.aiglesiasp.petshelter.ui.screens.shelters.ShelterDetailScreen
-import es.aiglesiasp.petshelter.ui.screens.shelters.SheltersListScreen
+import es.aiglesiasp.petshelter.ui.screens.shelters.sheltersDetail.SheltersDetailScreen
+import es.aiglesiasp.petshelter.ui.screens.shelters.sheltersList.SheltersListScreen
 
 @Composable
 fun Navigation() {
@@ -47,7 +47,7 @@ fun Navigation() {
 
         composable<ShelterDetail>() { backStackEntry ->
             val shelterId = backStackEntry.toRoute<ShelterDetail>()
-            ShelterDetailScreen(
+            SheltersDetailScreen(
                 navController = navController,
                 shelterId = shelterId.shelterId
             )

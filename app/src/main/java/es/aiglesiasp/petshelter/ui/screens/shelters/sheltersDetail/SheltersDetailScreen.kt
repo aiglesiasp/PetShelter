@@ -1,4 +1,4 @@
-package es.aiglesiasp.petshelter.ui.screens.pets.petsDetail
+package es.aiglesiasp.petshelter.ui.screens.shelters.sheltersDetail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -21,20 +21,20 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import es.aiglesiasp.petshelter.R
-import es.aiglesiasp.petshelter.domain.model.Pet
+import es.aiglesiasp.petshelter.domain.model.Shelter
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.LoadingProgressIndicator
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
 
 @Composable
-fun PetsDetailScreen(
+fun SheltersDetailScreen(
     navController: NavController,
-    vm: PetsDetailViewModel = hiltViewModel(),
-    petId: Int,
+    vm: SheltersDetailViewModel = hiltViewModel(),
+    shelterId: Int
 ) {
 
     LaunchedEffect(Unit) {
-        vm.loadData(petId)
+        vm.loadData(shelterId)
     }
 
     val uiState = vm.uiState.collectAsState()
@@ -49,8 +49,8 @@ fun PetsDetailScreen(
             if (uiState.value.isLoading) {
                 LoadingProgressIndicator()
             } else {
-                PetsDetailBody(
-                    pet = uiState.value.pet,
+                SheltersDetailBody(
+                    shelter = uiState.value.shelter,
                     modifier = Modifier.padding(paddingValues)
                 )
             }
@@ -59,14 +59,14 @@ fun PetsDetailScreen(
 }
 
 @Composable
-private fun PetsDetailBody(
-    pet: Pet?,
+private fun SheltersDetailBody(
+    shelter: Shelter?,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 
     val imageResId = context.resources.getIdentifier(
-        pet?.imagenRes,
+        shelter?.imagenRes,
         "drawable",
         context.packageName
     )
@@ -84,15 +84,17 @@ private fun PetsDetailBody(
     ) {
         Image(
             painter = painterResource(id = finalResId),
-            contentDescription = pet?.nombre,
+            contentDescription = shelter?.nombre,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp),
             contentScale = ContentScale.Crop
         )
-        pet?.nombre?.let { Text(it) }
-        pet?.raza?.let { Text(it) }
-        pet?.edad?.let { Text(it) }
-        pet?.descripcion?.let { Text(it) }
+        shelter?.nombre?.let { Text(it) }
+        shelter?.direccion?.let { Text(it) }
+        shelter?.telefono?.let { Text(it) }
+        shelter?.email?.let { Text(it) }
+
     }
+
 }

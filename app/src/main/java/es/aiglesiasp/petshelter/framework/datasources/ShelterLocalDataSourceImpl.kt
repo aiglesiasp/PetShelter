@@ -11,4 +11,8 @@ class ShelterLocalDataSourceImpl @Inject constructor(
     override suspend fun getShelters(): List<ShelterLocal> {
         return shelterDao.getShelters()
     }
+
+    override suspend fun getShelterById(shelterId: Int): ShelterLocal? {
+        return shelterDao.getSheltersById(shelterId)
+    }
 }

@@ -13,6 +13,6 @@ interface ShelterDao {
     @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertShelters(characters: List<ShelterLocal>)
 
-    @Query("SELECT * FROM shelters WHERE nombre = :name" )
-    suspend fun getSheltersByName(name: String): List<ShelterLocal>
+    @Query("SELECT * FROM shelters WHERE id = :id" )
+    suspend fun getSheltersById(id: Int): ShelterLocal?
 }

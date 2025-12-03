@@ -4,4 +4,5 @@ import es.aiglesiasp.petshelter.framework.database.ShelterLocal
 
 interface ShelterLocalDataSource {
     suspend fun getShelters(): List<ShelterLocal>
+    suspend fun getShelterById(shelterId: Int): ShelterLocal?
 }
