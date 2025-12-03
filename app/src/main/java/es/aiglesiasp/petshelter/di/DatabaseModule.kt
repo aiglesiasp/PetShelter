@@ -9,14 +9,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import es.aiglesiasp.petshelter.R
 import es.aiglesiasp.petshelter.framework.database.AppDatabase
+import es.aiglesiasp.petshelter.framework.database.PetLocal
+import es.aiglesiasp.petshelter.framework.database.ShelterLocal
 import jakarta.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import es.aiglesiasp.petshelter.R
-import es.aiglesiasp.petshelter.framework.database.PetLocal
-import es.aiglesiasp.petshelter.framework.database.ShelterLocal
 import kotlinx.serialization.json.Json
 
 
@@ -59,6 +59,9 @@ class DatabaseModule {
 
     @Provides
     fun provideShelterDao(database: AppDatabase) = database.shelterDao()
+
+    @Provides
+    fun provideLoginDao(database: AppDatabase) = database.loginDao()
 
     // --------- FUNCIÓN DE PRECARGA ---------
     private suspend fun prepopulateDatabase(context: Context, db: AppDatabase) {

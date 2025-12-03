@@ -40,7 +40,7 @@ fun SheltersListScreen(
             navController = navController,
             modifier = Modifier.fillMaxSize(),
             topBarTitle = stringResource(id = R.string.app_name),
-            showArrowBack = true
+            showTopAppBarArrowBack = true
         ) { paddingValues ->
             LazyColumn(
                 modifier = Modifier

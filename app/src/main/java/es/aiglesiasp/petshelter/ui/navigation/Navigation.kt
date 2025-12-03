@@ -5,6 +5,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import es.aiglesiasp.petshelter.ui.screens.login.LoginScreen
+import es.aiglesiasp.petshelter.ui.screens.register.RegisterScreen
 import es.aiglesiasp.petshelter.ui.screens.main.favorite.FavoriteScreen
 import es.aiglesiasp.petshelter.ui.screens.main.home.HomeScreen
 import es.aiglesiasp.petshelter.ui.screens.main.profile.ProfileScreen
@@ -16,7 +18,15 @@ import es.aiglesiasp.petshelter.ui.screens.shelters.sheltersList.SheltersListScr
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Home) {
+    NavHost(navController = navController, startDestination = Login) {
+        composable<Login> {
+            LoginScreen(navController = navController)
+        }
+
+        composable<Register> {
+            RegisterScreen(navController = navController)
+        }
+
         composable<Home> {
             HomeScreen(navController = navController)
         }

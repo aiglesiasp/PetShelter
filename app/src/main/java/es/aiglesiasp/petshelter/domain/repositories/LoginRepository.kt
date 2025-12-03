@@ -1,0 +1,6 @@
+package es.aiglesiasp.petshelter.domain.repositories
+
+interface LoginRepository {
+    suspend fun onLoginClick(email: String, password: String): Boolean
+    suspend fun onRegisterClick(name: String, email: String, role: String, password: String): Boolean
+}
