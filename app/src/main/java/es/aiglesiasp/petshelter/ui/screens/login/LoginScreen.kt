@@ -70,7 +70,7 @@ fun LoginScreen(
                         onLoginClick = {
                             //viewModel.onLoginClick()
                             navController.navigate(Home) {
-                                popUpTo(0) { inclusive = true }  // elimina TODO
+                                popUpTo(0) { inclusive = true }
                                 launchSingleTop = true
                             }
                         },

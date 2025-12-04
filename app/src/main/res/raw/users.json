@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "nombre": "User",
+    "email": "user@gmail.com",
+    "role": "Adopter",
+    "password": "12345678"
+  },
+  {
+    "id": 2,
+    "nombre": "Shelter",
+    "email": "shelter@gmail.com",
+    "role": "Shelter",
+    "password": "12345678"
+  }
+]

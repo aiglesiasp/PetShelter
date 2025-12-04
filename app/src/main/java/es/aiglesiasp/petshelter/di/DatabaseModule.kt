@@ -11,6 +11,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import es.aiglesiasp.petshelter.R
 import es.aiglesiasp.petshelter.framework.database.AppDatabase
+import es.aiglesiasp.petshelter.framework.database.LoginLocal
 import es.aiglesiasp.petshelter.framework.database.PetLocal
 import es.aiglesiasp.petshelter.framework.database.ShelterLocal
 import jakarta.inject.Singleton
@@ -84,5 +85,13 @@ class DatabaseModule {
 
         val pets = json.decodeFromString<List<PetLocal>>(petsJson)
         db.petDao().insertPets(pets)
+
+        val usersJson = context.resources
+        .openRawResource(R.raw.users)
+            .bufferedReader()
+            .use { it.readText() }
+
+        val users = json.decodeFromString<List<LoginLocal>>(usersJson)
+        db.loginDao().insertUsers(users)
     }
 }
