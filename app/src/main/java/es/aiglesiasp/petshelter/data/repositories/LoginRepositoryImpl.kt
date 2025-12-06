@@ -2,11 +2,13 @@ package es.aiglesiasp.petshelter.data.repositories
 
 import es.aiglesiasp.petshelter.data.datasources.LoginLocalDataSource
 import es.aiglesiasp.petshelter.domain.repositories.LoginRepository
+import es.aiglesiasp.petshelter.domain.repositories.SharedPreferencesRepository
 import es.aiglesiasp.petshelter.ui.screens.login.LoginResult
 import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(
-    private val loginLocalDataSource: LoginLocalDataSource
+    private val loginLocalDataSource: LoginLocalDataSource,
+    private val sharedPreferencesRepository: SharedPreferencesRepository
 ): LoginRepository {
     override suspend fun onLoginClick(
         email: String,
@@ -17,7 +19,10 @@ class LoginRepositoryImpl @Inject constructor(
         return when {
             user == null -> LoginResult.EmailNotFound
             user.password != password -> LoginResult.InvalidPassword
-            else -> LoginResult.Success(user)
+            else -> {
+                sharedPreferencesRepository.saveAutologin(true)
+                LoginResult.Success(user)
+            }
         }
     }
 
