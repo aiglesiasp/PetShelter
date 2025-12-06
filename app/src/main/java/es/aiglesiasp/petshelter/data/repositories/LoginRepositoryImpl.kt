@@ -2,6 +2,7 @@ package es.aiglesiasp.petshelter.data.repositories
 
 import es.aiglesiasp.petshelter.data.datasources.LoginLocalDataSource
 import es.aiglesiasp.petshelter.domain.repositories.LoginRepository
+import es.aiglesiasp.petshelter.ui.screens.login.LoginResult
 import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(
@@ -10,8 +11,14 @@ class LoginRepositoryImpl @Inject constructor(
     override suspend fun onLoginClick(
         email: String,
         password: String
-    ): Boolean {
-        TODO("Not yet implemented")
+    ): LoginResult {
+        val user = loginLocalDataSource.checkUserByEmail(email)
+
+        return when {
+            user == null -> LoginResult.EmailNotFound
+            user.password != password -> LoginResult.InvalidPassword
+            else -> LoginResult.Success(user)
+        }
     }
 
     override suspend fun onRegisterClick(

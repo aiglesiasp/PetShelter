@@ -10,6 +10,6 @@ interface LoginDao {
     @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertUsers(characters: List<LoginLocal>)
 
-    @Query("SELECT * FROM login WHERE email = :email AND password = :password")
-    suspend fun login(email: String, password: String): LoginLocal
+    @Query("SELECT * FROM login WHERE email = :email LIMIT 1")
+    suspend fun checkUserByEmail(email: String): LoginLocal?
 }

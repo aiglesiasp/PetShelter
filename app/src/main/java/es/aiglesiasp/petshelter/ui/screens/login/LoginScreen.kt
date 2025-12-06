@@ -14,6 +14,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,6 +42,16 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
 ) {
     val uiState = viewModel.uiState.collectAsState()
+
+    LaunchedEffect(uiState.value.loginResult) {
+        if (uiState.value.loginResult is LoginResult.Success) {
+            navController.navigate(Home) {
+                popUpTo(0) { inclusive = true }
+                launchSingleTop = true
+            }
+        }
+    }
+
     ScreenAppTheme {
         PSScaffold (
             navController = navController,
@@ -61,6 +72,7 @@ fun LoginScreen(
                     LoginTextFields(
                         email = uiState.value.email,
                         password = uiState.value.password,
+                        loginResult = uiState.value.loginResult,
                         onEmailChange = { viewModel.onEmailChange(it) },
                         onPasswordChange = { viewModel.onPasswordChange(it) },
                         onForgotPasswordClick = {}
@@ -68,11 +80,7 @@ fun LoginScreen(
 
                     LoginButtons(
                         onLoginClick = {
-                            //viewModel.onLoginClick()
-                            navController.navigate(Home) {
-                                popUpTo(0) { inclusive = true }
-                                launchSingleTop = true
-                            }
+                            viewModel.onLoginClick()
                         },
                         onRegisterClick = {
                             navController.navigate(Register)
@@ -143,6 +151,7 @@ private fun LoginButtons(
 private fun LoginTextFields(
     email: String,
     password: String,
+    loginResult: LoginResult?,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     onForgotPasswordClick: () -> Unit
@@ -156,12 +165,19 @@ private fun LoginTextFields(
             onValueChange = { onEmailChange(it) },
             placeholder = "Email"
         )
+        if (loginResult is LoginResult.EmailNotFound) {
+            LoginErrorText("Email not found")
+        }
+
         RoundedInputField(
             value = password,
             onValueChange = { onPasswordChange(it) },
             placeholder = "Password",
             isPassword = true
         )
+        if (loginResult is LoginResult.InvalidPassword) {
+            LoginErrorText("Invalid password")
+        }
 
         Text(
             text = "Forgot password?",
@@ -175,6 +191,16 @@ private fun LoginTextFields(
                 .clickable { onForgotPasswordClick() }
         )
     }
+}
+
+@Composable
+private fun LoginErrorText(text: String) {
+    Text(
+        text = text,
+        color = MaterialTheme.colorScheme.error,
+        style = MaterialTheme.typography.bodySmall,
+        modifier = Modifier.padding(start = 8.dp)
+    )
 }
 
 @Composable

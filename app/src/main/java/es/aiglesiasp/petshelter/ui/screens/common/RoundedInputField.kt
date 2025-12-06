@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,5 +47,15 @@ fun RoundedInputField(
             focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
             unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
         )
+    )
+}
+
+@Preview
+@Composable
+fun RoundedInputFieldPreview() {
+    RoundedInputField(
+        value = "Test",
+        onValueChange = {},
+        placeholder = "Placeholder",
     )
 }
