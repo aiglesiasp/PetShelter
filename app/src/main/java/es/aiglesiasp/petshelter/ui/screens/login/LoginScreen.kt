@@ -34,6 +34,7 @@ import es.aiglesiasp.petshelter.ui.common.LoadingProgressIndicator
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
 import es.aiglesiasp.petshelter.ui.navigation.Home
 import es.aiglesiasp.petshelter.ui.navigation.Register
+import es.aiglesiasp.petshelter.ui.screens.common.CustomDialogWithImage
 import es.aiglesiasp.petshelter.ui.screens.common.RoundedInputField
 
 @Composable
@@ -75,7 +76,7 @@ fun LoginScreen(
                         loginResult = uiState.value.loginResult,
                         onEmailChange = { viewModel.onEmailChange(it) },
                         onPasswordChange = { viewModel.onPasswordChange(it) },
-                        onForgotPasswordClick = {}
+                        onForgotPasswordClick = { viewModel.onForgotPasswordClick() }
                     )
 
                     LoginButtons(
@@ -90,6 +91,12 @@ fun LoginScreen(
 
                 if (uiState.value.isLoading) {
                     LoadingProgressIndicator()
+                }
+
+                if (uiState.value.showWarningDialog) {
+                    CustomDialogWithImage(
+                        onConfirm = { viewModel.dismissAlert() }
+                    )
                 }
             }
         }
@@ -117,7 +124,7 @@ private fun LoginButtons(
             )
         ) {
             Text(
-                text = "Log In",
+                text = "Iniciar",
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.SemiBold
                 )
@@ -138,7 +145,7 @@ private fun LoginButtons(
             elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
         ) {
             Text(
-                text = "Sign Up",
+                text = "Registrarse",
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.SemiBold
                 )
@@ -166,21 +173,21 @@ private fun LoginTextFields(
             placeholder = "Email"
         )
         if (loginResult is LoginResult.EmailNotFound) {
-            LoginErrorText("Email not found")
+            LoginErrorText("Correo no encontrado")
         }
 
         RoundedInputField(
             value = password,
             onValueChange = { onPasswordChange(it) },
-            placeholder = "Password",
+            placeholder = "Contraseña",
             isPassword = true
         )
         if (loginResult is LoginResult.InvalidPassword) {
-            LoginErrorText("Invalid password")
+            LoginErrorText("Contraseña erronea")
         }
 
         Text(
-            text = "Forgot password?",
+            text = "Ha olvidado la contraseña?",
             style = TextStyle(
                 fontSize = 14.sp,
                 color = MaterialTheme.colorScheme.primary,
@@ -209,7 +216,7 @@ private fun LoginTitle() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Welcome back",
+            text = "Bienvenido",
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontWeight = FontWeight.Bold
             )

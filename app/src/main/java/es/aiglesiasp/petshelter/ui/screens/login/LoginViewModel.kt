@@ -21,7 +21,8 @@ class LoginViewModel @Inject constructor(
         val isLoading: Boolean = false,
         val email: String = "",
         val password: String = "",
-        val loginResult: LoginResult = LoginResult.Idle
+        val loginResult: LoginResult = LoginResult.Idle,
+        val showWarningDialog: Boolean = false
     )
 
     fun onEmailChange(email: String) {
@@ -44,5 +45,13 @@ class LoginViewModel @Inject constructor(
                 loginResult = result
             )
         }
+    }
+
+    fun onForgotPasswordClick() {
+        _uiState.value = _uiState.value.copy(showWarningDialog = true)
+    }
+
+    fun dismissAlert() {
+        _uiState.value = _uiState.value.copy(showWarningDialog = false)
     }
 }

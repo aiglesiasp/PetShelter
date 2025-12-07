@@ -66,8 +66,8 @@ fun ProfileScreen(
 
             if (uiState.value.showLogoutDialog) {
                 SimpleConfirmDialog(
-                    title = "Logout",
-                    message = "Are you sure you want to logout?",
+                    title = "AVISO",
+                    message = "¿Estas seguro que quieres cerrar sesión?",
                     onConfirm = {
                         vm.onConfirmLogout()
                         navController.navigate(Login)
@@ -119,30 +119,30 @@ private fun ProfileBody(
         Spacer(modifier = Modifier.height(32.dp))
 
         // ----- Sección Cuenta -----
-        SectionTitle(text = "Account")
+        SectionTitle(text = "Cuenta")
 
         SettingsRow(
-            text = "Edit profile",
+            text = "Editar perfil",
             onClick = onEditProfileClick
         )
 
         SettingsRow(
-            text = "Logout",
+            text = "Cerrar sesión",
             onClick = onLogoutClick
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
         // ----- Sección Ayuda -----
-        SectionTitle(text = "Help")
+        SectionTitle(text = "Ayuda")
 
         SettingsRow(
-            text = "FAQ",
+            text = "Preguntas freqüentes",
             onClick = onFaqClick
         )
 
         SettingsRow(
-            text = "Contact us",
+            text = "Contacta",
             onClick = onContactClick
         )
     }
@@ -244,12 +244,12 @@ fun SimpleConfirmDialog(
         },
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text("Accept")
+                Text("Aceptar")
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text("Cancelar")
             }
         }
     )

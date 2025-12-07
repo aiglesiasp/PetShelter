@@ -98,7 +98,7 @@ private fun PetTitle(navigateToPetList: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Available Pets",
+            text = "Mascotas Disponibles",
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.SemiBold
             )
@@ -138,7 +138,7 @@ private fun ShelterTitle(navigateToShelterList: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Featured Shelters",
+            text = "Refugios Disponibles",
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.SemiBold
             ),

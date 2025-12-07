@@ -22,6 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,11 +46,17 @@ fun RegisterScreen(
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
+    LaunchedEffect(uiState.value.isRegisterSuccess) {
+        if (uiState.value.isRegisterSuccess) {
+            navController.navigate(Login)
+        }
+    }
+
     ScreenAppTheme {
         PSScaffold (
             navController = navController,
             modifier = Modifier.fillMaxSize(),
-            topBarTitle = "Sign Up",
+            topBarTitle = "Registrarse",
             showTopAppBarArrowBack = true,
             showBottomAppBar = false
         ) { paddingValues ->
@@ -126,7 +133,7 @@ private fun RegisterButton(
         )
     ) {
         Text(
-            text = "Sign Up",
+            text = "Registrase",
             style = MaterialTheme.typography.titleMedium.copy(
                 fontWeight = FontWeight.SemiBold
             )
@@ -145,11 +152,11 @@ private fun AccountRow(
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Already have an account? ",
+            text = "Ya tiene una cuenta? ",
             style = MaterialTheme.typography.bodyMedium
         )
         Text(
-            text = "Sign In",
+            text = "Iniciar sesión",
             style = MaterialTheme.typography.bodyMedium.copy(
                 color = MaterialTheme.colorScheme.primary,
                 textDecoration = TextDecoration.Underline
@@ -164,11 +171,11 @@ private fun PasswordTextField(
     password: String,
     onPasswordChange: (String) -> Unit
 ) {
-    Text(text = "Password", style = MaterialTheme.typography.bodyLarge)
+    Text(text = "Contraseña", style = MaterialTheme.typography.bodyLarge)
     RoundedInputField(
         value = password,
         onValueChange = { onPasswordChange(it) },
-        placeholder = "Enter your password",
+        placeholder = "Añade tu contraseña",
         isPassword = true
     )
 }
@@ -181,7 +188,7 @@ private fun RoleSelector(
     onRoleChange: (String) -> Unit,
     onExpandedChange: (Boolean) -> Unit
 ) {
-    Text(text = "Role", style = MaterialTheme.typography.bodyLarge)
+    Text(text = "Rol", style = MaterialTheme.typography.bodyLarge)
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = { onExpandedChange(it) }
@@ -189,7 +196,7 @@ private fun RoleSelector(
         RoundedInputField(
             value = role,
             onValueChange = { },
-            placeholder = "Select your role",
+            placeholder = "Seleccione un rol",
             modifier = Modifier
                 .menuAnchor()
                 .fillMaxWidth(),
@@ -197,7 +204,7 @@ private fun RoleSelector(
             trailingIcon = {
                 Icon(
                     imageVector = if (expanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
-                    contentDescription = "Select role"
+                    contentDescription = "Seleccione un rol"
                 )
             }
         )
@@ -207,16 +214,16 @@ private fun RoleSelector(
             onDismissRequest = { onExpandedChange(false) }
         ) {
             DropdownMenuItem(
-                text = { Text("Adopter") },
+                text = { Text("Adoptante") },
                 onClick = {
-                    onRoleChange("Adopter")
+                    onRoleChange("Adoptante")
                     onExpandedChange(false)
                 }
             )
             DropdownMenuItem(
-                text = { Text("Shelter") },
+                text = { Text("Refugio") },
                 onClick = {
-                    onRoleChange("Shelter")
+                    onRoleChange("Refugio")
                     onExpandedChange(false)
                 }
             )
@@ -229,11 +236,11 @@ private fun EmailTextField(
     email: String,
     onEmailChange: (String) -> Unit
 ) {
-    Text(text = "Email", style = MaterialTheme.typography.bodyLarge)
+    Text(text = "Correo", style = MaterialTheme.typography.bodyLarge)
     RoundedInputField(
         value = email,
         onValueChange = { onEmailChange(it) },
-        placeholder = "Enter your email"
+        placeholder = "Añade tu correo"
     )
 }
 
@@ -242,11 +249,11 @@ private fun NameTextField(
     name: String,
     onNameChange: (String) -> Unit
 ) {
-    Text(text = "Name", style = MaterialTheme.typography.bodyLarge)
+    Text(text = "Nombre", style = MaterialTheme.typography.bodyLarge)
     RoundedInputField(
         value = name,
         onValueChange = { onNameChange(it) },
-        placeholder = "Enter your name"
+        placeholder = "Introduce su nombre"
     )
 }
 

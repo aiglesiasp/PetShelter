@@ -45,7 +45,7 @@ fun CustomDialogWithImage(
 
                 // 🔹 Título
                 Text(
-                    text = "WARNING",
+                    text = "ATENCIÓN",
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.error
                 )
@@ -54,7 +54,7 @@ fun CustomDialogWithImage(
 
                 // 🔹 Texto
                 Text(
-                    text = "This page is under construction, we apologize for the inconvenience.",
+                    text = "Esta página esta en mantenimiento. Disculpen las molestias",
                     style = MaterialTheme.typography.bodyMedium,
                 )
 
@@ -79,7 +79,7 @@ fun CustomDialogWithImage(
                         onClick = onConfirm,
                         modifier = Modifier.padding(end = 8.dp)
                     ) {
-                        Text("Accept")
+                        Text("Aceptar")
                     }
                 }
             }

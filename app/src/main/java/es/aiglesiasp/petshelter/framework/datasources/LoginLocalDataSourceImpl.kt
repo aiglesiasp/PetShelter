@@ -11,7 +11,9 @@ class LoginLocalDataSourceImpl @Inject constructor(
     override suspend fun checkUserByEmail(
         email: String,
     ): LoginLocal? {
-        return loginDao.checkUserByEmail(email)
+        val user = loginDao.checkUserByEmail(email)
+        return user
+        //return loginDao.checkUserByEmail(email)
     }
 
     override suspend fun onRegisterClick(
@@ -20,7 +22,17 @@ class LoginLocalDataSourceImpl @Inject constructor(
         role: String,
         password: String
     ): Boolean {
-        TODO("Not yet implemented")
+        val id = loginDao.getMaxUserId() ?: 1
+        val newUser = LoginLocal(
+            id = id,
+            nombre = name,
+            email = email,
+            role = role,
+            password = password
+        )
+
+        loginDao.insertUser(newUser)
+        return getUserById(id) != null
     }
 
     override suspend fun getUserById(id: Int): LoginLocal? {

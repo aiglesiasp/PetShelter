@@ -34,7 +34,7 @@ class LoginRepositoryImpl @Inject constructor(
         role: String,
         password: String
     ): Boolean {
-        TODO("Not yet implemented")
+        return loginLocalDataSource.onRegisterClick(name, email, role, password)
     }
 
     override suspend fun getUserById(id: Int): LoginLocal? {

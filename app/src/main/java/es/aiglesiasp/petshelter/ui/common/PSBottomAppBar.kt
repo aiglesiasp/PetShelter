@@ -67,19 +67,19 @@ sealed class BottomNavItem(
 
     object Home : BottomNavItem(
         route = es.aiglesiasp.petshelter.ui.navigation.Home,
-        title = "Home",
+        title = "Inicio",
         icon = Icons.Default.Home
     )
 
     object Favorites : BottomNavItem(
         route = es.aiglesiasp.petshelter.ui.navigation.Favorite,
-        title = "Favorites",
+        title = "Favoritos",
         icon = Icons.Default.Favorite
     )
 
     object Profile : BottomNavItem(
         route = es.aiglesiasp.petshelter.ui.navigation.Profile,
-        title = "Profile",
+        title = "Perfil",
         icon = Icons.Default.Person
     )
 }

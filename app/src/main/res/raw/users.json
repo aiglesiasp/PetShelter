@@ -3,14 +3,14 @@
     "id": 1,
     "nombre": "User",
     "email": "user@gmail.com",
-    "role": "Adopter",
+    "role": "Adoptante",
     "password": "12345678"
   },
   {
     "id": 2,
     "nombre": "Shelter",
     "email": "shelter@gmail.com",
-    "role": "Shelter",
+    "role": "Refugio",
     "password": "12345678"
   }
 ]

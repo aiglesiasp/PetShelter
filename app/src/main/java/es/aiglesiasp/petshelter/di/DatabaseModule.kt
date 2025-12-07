@@ -68,7 +68,14 @@ class DatabaseModule {
     private suspend fun prepopulateDatabase(context: Context, db: AppDatabase) {
         val json = Json { ignoreUnknownKeys = true }
 
-        // Leer shelters.json desde res/raw
+        val usersJson = context.resources
+            .openRawResource(R.raw.users)
+            .bufferedReader()
+            .use { it.readText() }
+
+        val users = json.decodeFromString<List<LoginLocal>>(usersJson)
+        db.loginDao().insertUsers(users)
+
         val sheltersJson = context.resources
             .openRawResource(R.raw.shelters)
             .bufferedReader()
@@ -77,7 +84,6 @@ class DatabaseModule {
         val shelters = json.decodeFromString<List<ShelterLocal>>(sheltersJson)
         db.shelterDao().insertShelters(shelters)
 
-        // Leer pets.json desde res/raw
         val petsJson = context.resources
             .openRawResource(R.raw.pets)
             .bufferedReader()
@@ -85,13 +91,5 @@ class DatabaseModule {
 
         val pets = json.decodeFromString<List<PetLocal>>(petsJson)
         db.petDao().insertPets(pets)
-
-        val usersJson = context.resources
-        .openRawResource(R.raw.users)
-            .bufferedReader()
-            .use { it.readText() }
-
-        val users = json.decodeFromString<List<LoginLocal>>(usersJson)
-        db.loginDao().insertUsers(users)
     }
 }
