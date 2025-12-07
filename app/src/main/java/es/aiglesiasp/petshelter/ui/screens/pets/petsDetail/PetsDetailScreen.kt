@@ -3,6 +3,7 @@ package es.aiglesiasp.petshelter.ui.screens.pets.petsDetail
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -151,6 +152,7 @@ private fun PetItems(
     navigateToPetDetail: (Int) -> Unit
 ) {
     LazyRow(
+        modifier = Modifier.height(265.dp),   // ⬅️ misma altura
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(pets) { pet ->
@@ -158,7 +160,9 @@ private fun PetItems(
                 nombre = pet.nombre,
                 descripcion = "${pet.raza}, ${pet.edad}",
                 imagenRes = pet.imagenRes,
-                modifier = Modifier.clickable { navigateToPetDetail(pet.id) }
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .clickable { navigateToPetDetail(pet.id) }
             )
         }
     }

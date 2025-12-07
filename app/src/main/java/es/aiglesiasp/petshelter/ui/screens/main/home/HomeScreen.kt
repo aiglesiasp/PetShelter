@@ -3,8 +3,10 @@ package es.aiglesiasp.petshelter.ui.screens.main.home
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -112,6 +114,7 @@ private fun PetItems(
     navigateToPetDetail: (Int) -> Unit
 ) {
     LazyRow(
+        modifier = Modifier.height(265.dp),   // ⬅️ altura fija de la fila
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(pets) { pet ->
@@ -119,7 +122,9 @@ private fun PetItems(
                 nombre = pet.nombre,
                 descripcion = "${pet.raza}, ${pet.edad}",
                 imagenRes = pet.imagenRes,
-                modifier = Modifier.clickable { navigateToPetDetail(pet.id) }
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .clickable { navigateToPetDetail(pet.id) }
             )
         }
     }
@@ -150,6 +155,7 @@ private fun ShelterItems(
     navigateToShelterDetail: (Int) -> Unit
 ) {
     LazyRow(
+        modifier = Modifier.height(265.dp),   // ⬅️ misma altura
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(shelters) { shelter ->
@@ -157,7 +163,9 @@ private fun ShelterItems(
                 nombre = shelter.nombre,
                 descripcion = shelter.direccion,
                 imagenRes = shelter.imagenRes,
-                modifier = Modifier.clickable { navigateToShelterDetail(shelter.id) }
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .clickable { navigateToShelterDetail(shelter.id) }
             )
         }
     }
