@@ -32,7 +32,6 @@ import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.LoadingProgressIndicator
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
 import es.aiglesiasp.petshelter.ui.navigation.PetDetail
-import es.aiglesiasp.petshelter.ui.navigation.ShelterDetail
 import es.aiglesiasp.petshelter.ui.screens.main.home.HomeItem
 
 @Composable
@@ -60,7 +59,7 @@ fun SheltersDetailScreen(
             } else {
                 SheltersDetailBody(
                     shelter = uiState.value.shelter,
-                    petList = uiState.value.sheltersList,
+                    petList = uiState.value.petList,
                     modifier = Modifier.padding(paddingValues),
                     navigateToPetDetail = { petId ->
                         navController.navigate(PetDetail(petId = petId))
@@ -124,7 +123,7 @@ private fun SheltersDetailBody(
         item { shelter?.email?.let { Text(it) } }
         item {
             Text(
-                text = "Otros refugios",
+                text = "Animales",
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.Bold
                 ),
