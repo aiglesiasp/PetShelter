@@ -30,6 +30,7 @@ import es.aiglesiasp.petshelter.domain.model.Pet
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.LoadingProgressIndicator
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
+import es.aiglesiasp.petshelter.ui.navigation.PetDetail
 import es.aiglesiasp.petshelter.ui.screens.main.home.HomeItem
 
 @Composable
@@ -58,7 +59,10 @@ fun PetsDetailScreen(
                 PetsDetailBody(
                     pet = uiState.value.pet,
                     petsList = uiState.value.petsList,
-                    modifier = Modifier.padding(paddingValues)
+                    modifier = Modifier.padding(paddingValues),
+                    navigateToPetDetail = { petId ->
+                        navController.navigate(PetDetail(petId = petId))
+                    }
                 )
             }
         }
@@ -69,7 +73,8 @@ fun PetsDetailScreen(
 private fun PetsDetailBody(
     pet: Pet?,
     petsList: List<Pet>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToPetDetail: (Int) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -134,7 +139,7 @@ private fun PetsDetailBody(
         item {
             PetItems(
                 pets = petsList,
-                navigateToPetDetail = {}
+                navigateToPetDetail = navigateToPetDetail
             )
         }
     }
@@ -179,6 +184,7 @@ private fun PetsDetailBody_Preview() {
 
     PetsDetailBody(
         pet = pet,
-        petsList = petsList
+        petsList = petsList,
+        navigateToPetDetail = {}
     )
 }

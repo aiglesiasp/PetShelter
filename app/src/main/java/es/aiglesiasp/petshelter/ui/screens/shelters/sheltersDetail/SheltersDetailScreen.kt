@@ -29,6 +29,7 @@ import es.aiglesiasp.petshelter.domain.model.Shelter
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.LoadingProgressIndicator
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
+import es.aiglesiasp.petshelter.ui.navigation.ShelterDetail
 import es.aiglesiasp.petshelter.ui.screens.main.home.HomeItem
 
 @Composable
@@ -57,7 +58,10 @@ fun SheltersDetailScreen(
                 SheltersDetailBody(
                     shelter = uiState.value.shelter,
                     sheltersList = uiState.value.sheltersList,
-                    modifier = Modifier.padding(paddingValues)
+                    modifier = Modifier.padding(paddingValues),
+                    navigateToShelterDetail = { shelterId ->
+                        navController.navigate(ShelterDetail(shelterId = shelterId))
+                    }
                 )
             }
         }
@@ -68,7 +72,8 @@ fun SheltersDetailScreen(
 private fun SheltersDetailBody(
     shelter: Shelter?,
     sheltersList: List<Shelter>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToShelterDetail: (Int) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -127,7 +132,7 @@ private fun SheltersDetailBody(
         item {
             ShelterItems(
                 shelters = sheltersList,
-                navigateToShelterDetail = {}
+                navigateToShelterDetail = navigateToShelterDetail
             )
         }
     }
