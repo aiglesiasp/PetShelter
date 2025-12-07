@@ -21,4 +21,7 @@ interface PetDao {
 
     @Query("SELECT * FROM pets WHERE refugio = :refugio" )
     suspend fun getPetsByRefugio(refugio: String): List<PetLocal>
+
+    @Query("SELECT * FROM pets WHERE isFavorite = true" )
+    suspend fun getAllFavoritesPets(): List<PetLocal>
 }

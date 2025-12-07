@@ -6,4 +6,6 @@ interface PetsRepository {
     suspend fun getPets(): List<Pet>
     suspend fun getPetById(id: Int): Pet?
     suspend fun getPetsByRefugio(refugio: String): List<Pet>
+    suspend fun getAllFavoritesPets(): List<Pet>
+    suspend fun toggleFavoritePet(petId: Int): Pet?
 }

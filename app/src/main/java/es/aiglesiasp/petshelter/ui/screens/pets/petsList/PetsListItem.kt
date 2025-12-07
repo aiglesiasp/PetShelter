@@ -127,6 +127,7 @@ private fun PetsListItemPreview() {
         descripcion = "",
         imagenRes = "perro1",
         refugio = "Refugio 1",
+        isFavorite = false
     )
     PetsListItem(
         pet = mockPet,

@@ -6,4 +6,6 @@ interface PetLocalDataSource {
     suspend fun getPets(): List<PetLocal>
     suspend fun getPetById(id: Int): PetLocal?
     suspend fun getPetsByRefugio(refugio: String): List<PetLocal>
+    suspend fun getAllFavoritesPets(): List<PetLocal>
+    suspend fun toggleFavoritePet(petId: Int): PetLocal?
 }

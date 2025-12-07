@@ -109,7 +109,7 @@ private fun PetTitle(navigateToPetList: () -> Unit) {
 }
 
 @Composable
-private fun PetItems(
+fun PetItems(
     pets: List<Pet>,
     navigateToPetDetail: (Int) -> Unit
 ) {
@@ -195,7 +195,8 @@ private fun HomeBody_Preview() {
             edad = "2 años",
             descripcion = "Un perro cariñoso y leal.",
             imagenRes = "perro1",
-            refugio = "Refugio 1"
+            refugio = "Refugio 1",
+            isFavorite = false
         ),
         Pet(
             id = 1,
@@ -205,7 +206,8 @@ private fun HomeBody_Preview() {
             edad = "10 meses",
             descripcion = "Un gato cariñoso y leal.",
             imagenRes = "perro2",
-            refugio = "Refugio 2"
+            refugio = "Refugio 2",
+            isFavorite = false
         ),
         Pet(
             id = 2,
@@ -215,7 +217,8 @@ private fun HomeBody_Preview() {
             edad = "3 años",
             descripcion = "Un perro grande.",
             imagenRes = "https://picsum.photos/seed/dog1/600/600",
-            refugio = "Refugio 3"
+            refugio = "Refugio 3",
+            isFavorite = false
         )
     )
 

@@ -23,4 +23,14 @@ class PetsRepositoryImpl @Inject constructor(
         val result = petsLocalDataSource.getPetsByRefugio(refugio)
         return result.map { it.toDomain() }
     }
+
+    override suspend fun getAllFavoritesPets(): List<Pet> {
+        val result = petsLocalDataSource.getAllFavoritesPets()
+        return result.map { it.toDomain() }
+    }
+
+    override suspend fun toggleFavoritePet(petId: Int): Pet? {
+        val result = petsLocalDataSource.toggleFavoritePet(petId)
+        return result?.toDomain()
+    }
 }

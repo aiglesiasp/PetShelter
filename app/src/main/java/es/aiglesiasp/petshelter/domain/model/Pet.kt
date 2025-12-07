@@ -10,7 +10,8 @@ data class Pet(
     val edad: String,
     val descripcion: String,
     val imagenRes: String,
-    val refugio: String
+    val refugio: String,
+    val isFavorite: Boolean
 ) {
     val tipoAnimal: Filter
         get() = when (tipo) {

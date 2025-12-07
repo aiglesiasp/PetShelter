@@ -20,4 +20,18 @@ class PetLocalDataSourceImpl @Inject constructor(
     override suspend fun getPetsByRefugio(refugio: String): List<PetLocal> {
         return petDao.getPetsByRefugio(refugio)
     }
+
+    override suspend fun getAllFavoritesPets(): List<PetLocal> {
+        return petDao.getAllFavoritesPets()
+    }
+
+    override suspend fun toggleFavoritePet(petId: Int): PetLocal? {
+        val olderPet = petDao.getPetById(petId)
+        olderPet?.let {
+            val newPet = it.copy(isFavorite = !it.isFavorite)
+            petDao.insertPets(listOf(newPet))
+        }
+        val newPet = petDao.getPetById(petId)
+        return newPet
+    }
 }

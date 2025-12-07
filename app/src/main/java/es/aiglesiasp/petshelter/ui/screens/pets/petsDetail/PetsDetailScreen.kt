@@ -3,6 +3,7 @@ package es.aiglesiasp.petshelter.ui.screens.pets.petsDetail
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -63,6 +68,9 @@ fun PetsDetailScreen(
                     modifier = Modifier.padding(paddingValues),
                     navigateToPetDetail = { petId ->
                         navController.navigate(PetDetail(petId = petId))
+                    },
+                    onFavoriteClick = { petId ->
+                        vm.onToggleFavoriteClick(petId)
                     }
                 )
             }
@@ -75,7 +83,8 @@ private fun PetsDetailBody(
     pet: Pet?,
     petsList: List<Pet>,
     modifier: Modifier = Modifier,
-    navigateToPetDetail: (Int) -> Unit
+    navigateToPetDetail: (Int) -> Unit,
+    onFavoriteClick: (Int) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -108,13 +117,28 @@ private fun PetsDetailBody(
         }
 
         item {
-            pet?.nombre?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.headlineSmall.copy(
-                        fontWeight = FontWeight.Bold
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                pet?.nombre?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.headlineSmall.copy(
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                )
+
+                    Icon(
+                        imageVector = if (pet.isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                        contentDescription = "Seleccione un rol",
+                        modifier = Modifier.clickable {
+                            onFavoriteClick(pet.id)
+                        }
+                    )
+                }
+
+
             }
         }
 
@@ -179,7 +203,8 @@ private fun PetsDetailBody_Preview() {
         edad = "3 años",
         imagenRes = "perro1",
         descripcion = "Es un perro muy bonito",
-        refugio = "Refugio 1"
+        refugio = "Refugio 1",
+        isFavorite = false
     )
     
     val petsList = listOf(
@@ -189,6 +214,7 @@ private fun PetsDetailBody_Preview() {
     PetsDetailBody(
         pet = pet,
         petsList = petsList,
-        navigateToPetDetail = {}
+        navigateToPetDetail = {},
+        onFavoriteClick = {}
     )
 }

@@ -38,4 +38,11 @@ class PetsDetailViewModel @Inject constructor(
             )
         }
     }
+
+    fun onToggleFavoriteClick(petId: Int) {
+        viewModelScope.launch {
+            val result = petsRepository.toggleFavoritePet(petId)
+            _uiState.value = _uiState.value.copy(pet = result)
+        }
+    }
 }

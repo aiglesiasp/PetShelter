@@ -16,7 +16,8 @@ data class PetLocal(
     val edad: String,
     val descripcion: String,
     val imagenRes: String,
-    val refugio: String
+    val refugio: String,
+    val isFavorite: Boolean
 )
 
 fun PetLocal.toDomain(): Pet {
@@ -28,6 +29,7 @@ fun PetLocal.toDomain(): Pet {
         edad = edad,
         descripcion = descripcion,
         imagenRes = imagenRes,
-        refugio = refugio
+        refugio = refugio,
+        isFavorite = isFavorite
     )
 }
