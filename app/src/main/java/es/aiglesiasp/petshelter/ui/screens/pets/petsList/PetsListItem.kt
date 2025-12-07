@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -54,19 +55,25 @@ fun PetsListItem(
     }
 
     Card(
-        modifier = modifier.fillMaxWidth().height(180.dp).clickable{ onPetClick(pet.id) },
+        modifier = modifier
+            .fillMaxWidth()
+            .height(180.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clickable{ onPetClick(pet.id) },
         shape = RoundedCornerShape(24.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
-                modifier = modifier.padding(16.dp).weight(1f),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalAlignment = Alignment.Start
             ) {
                 Text(
                     text = pet.nombre,
@@ -97,8 +104,8 @@ fun PetsListItem(
                 painter = painterResource(id = finalResId),
                 contentDescription = pet.nombre,
                 modifier = Modifier
-                    .fillMaxHeight().width(200.dp)
-                    .padding(16.dp)
+                    .fillMaxHeight()
+                    .width(140.dp)
                     .clip(RoundedCornerShape(20.dp)),
                 contentScale = ContentScale.Crop
             )

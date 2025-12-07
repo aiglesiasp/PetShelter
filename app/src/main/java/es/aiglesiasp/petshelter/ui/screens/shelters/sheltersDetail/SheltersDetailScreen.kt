@@ -26,10 +26,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import es.aiglesiasp.petshelter.R
+import es.aiglesiasp.petshelter.domain.model.Pet
 import es.aiglesiasp.petshelter.domain.model.Shelter
 import es.aiglesiasp.petshelter.ui.ScreenAppTheme
 import es.aiglesiasp.petshelter.ui.common.LoadingProgressIndicator
 import es.aiglesiasp.petshelter.ui.common.PSScaffold
+import es.aiglesiasp.petshelter.ui.navigation.PetDetail
 import es.aiglesiasp.petshelter.ui.navigation.ShelterDetail
 import es.aiglesiasp.petshelter.ui.screens.main.home.HomeItem
 
@@ -58,10 +60,10 @@ fun SheltersDetailScreen(
             } else {
                 SheltersDetailBody(
                     shelter = uiState.value.shelter,
-                    sheltersList = uiState.value.sheltersList,
+                    petList = uiState.value.sheltersList,
                     modifier = Modifier.padding(paddingValues),
-                    navigateToShelterDetail = { shelterId ->
-                        navController.navigate(ShelterDetail(shelterId = shelterId))
+                    navigateToPetDetail = { petId ->
+                        navController.navigate(PetDetail(petId = petId))
                     }
                 )
             }
@@ -72,9 +74,9 @@ fun SheltersDetailScreen(
 @Composable
 private fun SheltersDetailBody(
     shelter: Shelter?,
-    sheltersList: List<Shelter>,
+    petList: List<Pet>,
     modifier: Modifier = Modifier,
-    navigateToShelterDetail: (Int) -> Unit
+    navigateToPetDetail: (Int) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -131,32 +133,31 @@ private fun SheltersDetailBody(
         }
 
         item {
-            ShelterItems(
-                shelters = sheltersList,
-                navigateToShelterDetail = navigateToShelterDetail
+            PetItems(
+                pets = petList,
+                navigateToPetDetail = navigateToPetDetail
             )
         }
     }
 }
 
-
 @Composable
-private fun ShelterItems(
-    shelters: List<Shelter>,
-    navigateToShelterDetail: (Int) -> Unit
+private fun PetItems(
+    pets: List<Pet>,
+    navigateToPetDetail: (Int) -> Unit
 ) {
     LazyRow(
         modifier = Modifier.height(265.dp),   // ⬅️ misma altura
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        items(shelters) { shelter ->
+        items(pets) { pet ->
             HomeItem(
-                nombre = shelter.nombre,
-                descripcion = shelter.direccion,
-                imagenRes = shelter.imagenRes,
+                nombre = pet.nombre,
+                descripcion = "${pet.raza}, ${pet.edad}",
+                imagenRes = pet.imagenRes,
                 modifier = Modifier
                     .fillMaxHeight()
-                    .clickable { navigateToShelterDetail(shelter.id) }
+                    .clickable { navigateToPetDetail(pet.id) }
             )
         }
     }
