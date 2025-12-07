@@ -7,7 +7,7 @@
     "edad": "2 años",
     "descripcion": "Perra muy cariñosa y sociable, ideal para familias con niños.",
     "imagenRes": "luna",
-    "refugio": "Refugio Esperanza"
+    "refugio": "Refugio Huellas"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "edad": "4 meses",
     "descripcion": "Cachorro muy activo, necesita ejercicio y estimulación mental diaria.",
     "imagenRes": "rocky",
-    "refugio": "Refugio Animalia"
+    "refugio": "Protectora Amigos Peludos"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "edad": "1 año",
     "descripcion": "Perra enérgica y muy sociable, amante del agua y de los paseos largos.",
     "imagenRes": "kira",
-    "refugio": "Refugio Patitas"
+    "refugio": "Centro Animal Vida Nueva"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "edad": "3 años",
     "descripcion": "Husky precioso, independiente, muy juguetón y amante del frío.",
     "imagenRes": "thor",
-    "refugio": "Refugio Norte"
+    "refugio": "Fundación Patitas Felices"
   },
   {
     "id": 5,
@@ -47,7 +47,7 @@
     "edad": "2 años",
     "descripcion": "Perro curioso y con muy buen olfato. Ideal para familias activas.",
     "imagenRes": "toby",
-    "refugio": "Refugio Esperanza"
+    "refugio": "Hogar Animal Esperanza"
   },
   {
     "id": 6,
@@ -57,7 +57,7 @@
     "edad": "3 años",
     "descripcion": "Perro calmado y cariñoso, perfecto para piso y vida tranquila.",
     "imagenRes": "bruno",
-    "refugio": "Refugio Ciudad"
+    "refugio": "Refugio Huellas"
   },
   {
     "id": 7,
@@ -67,7 +67,7 @@
     "edad": "10 meses",
     "descripcion": "Gata tranquila y observadora, perfecta para pisos y hogares calmados.",
     "imagenRes": "misu",
-    "refugio": "Refugio Gatunos"
+    "refugio": "Protectora Amigos Peludos"
   },
   {
     "id": 8,
@@ -77,7 +77,7 @@
     "edad": "2 años",
     "descripcion": "Gata muy dulce y cariñosa, necesita cepillado frecuente.",
     "imagenRes": "mimi",
-    "refugio": "Refugio Gatunos"
+    "refugio": "Centro Animal Vida Nueva"
   },
   {
     "id": 9,
@@ -87,7 +87,7 @@
     "edad": "1 año",
     "descripcion": "Gato muy activo y juguetón, necesita espacio para moverse.",
     "imagenRes": "simba",
-    "refugio": "Refugio Amigos Felinos"
+    "refugio": "Fundación Patitas Felices"
   },
   {
     "id": 10,
@@ -97,7 +97,7 @@
     "edad": "1 año",
     "descripcion": "Gato muy hablador y curioso, le encanta la compañía humana.",
     "imagenRes": "tom",
-    "refugio": "Refugio Amigos Felinos"
+    "refugio": "Hogar Animal Esperanza"
   },
   {
     "id": 11,
@@ -107,7 +107,7 @@
     "edad": "6 meses",
     "descripcion": "Coneja muy dócil, le encanta explorar y comer verduritas.",
     "imagenRes": "nala",
-    "refugio": "Refugio Pequeños Hogares"
+    "refugio": "Refugio Huellas"
   },
   {
     "id": 12,
@@ -117,7 +117,7 @@
     "edad": "1 año",
     "descripcion": "Conejo muy sociable y tranquilo, ideal para interiores.",
     "imagenRes": "bunny",
-    "refugio": "Refugio Pequeños Hogares"
+    "refugio": "Protectora Amigos Peludos"
   },
   {
     "id": 13,
@@ -127,7 +127,7 @@
     "edad": "4 meses",
     "descripcion": "Muy activo por la noche. Ideal como primera mascota.",
     "imagenRes": "pepito",
-    "refugio": "Refugio MiniZoo"
+    "refugio": "Centro Animal Vida Nueva"
   },
   {
     "id": 14,
@@ -137,7 +137,7 @@
     "edad": "6 meses",
     "descripcion": "Muy tranquila y manejable, perfecta para niños responsables.",
     "imagenRes": "bolita",
-    "refugio": "Refugio MiniZoo"
+    "refugio": "Fundación Patitas Felices"
   },
   {
     "id": 15,
@@ -147,7 +147,7 @@
     "edad": "1 año",
     "descripcion": "Canta cada mañana. Necesita jaula amplia y buena iluminación.",
     "imagenRes": "piolin",
-    "refugio": "Refugio AvesHome"
+    "refugio": "Hogar Animal Esperanza"
   },
   {
     "id": 16,
@@ -157,7 +157,7 @@
     "edad": "8 meses",
     "descripcion": "Muy sociable, le encanta estar acompañado y jugar con juguetes.",
     "imagenRes": "coco",
-    "refugio": "Refugio AvesHome"
+    "refugio": "Refugio Huellas"
   },
   {
     "id": 17,
@@ -167,7 +167,7 @@
     "edad": "1 año",
     "descripcion": "Periquito muy activo, puede aprender sonidos y silbidos.",
     "imagenRes": "loki",
-    "refugio": "Refugio AvesHome"
+    "refugio": "Fundación Patitas Felices"
   },
   {
     "id": 18,
@@ -177,7 +177,7 @@
     "edad": "5 meses",
     "descripcion": "Cobaya muy curiosa, disfruta de la compañía y las verduras frescas.",
     "imagenRes": "manchas",
-    "refugio": "Refugio MiniZoo"
+    "refugio": "Refugio Huellas"
   }
 ]
 

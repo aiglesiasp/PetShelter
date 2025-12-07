@@ -1,18 +1,42 @@
 [
-    {
+  {
     "id": 1,
     "nombre": "Refugio Huellas",
     "direccion": "C/ Sol 123, Barcelona",
     "telefono": "+34 600 123 456",
     "email": "contacto@huellas.org",
-    "imagenRes": "refugio1"
-    },
-    {
+    "imagenRes": "huellas"
+  },
+  {
     "id": 2,
     "nombre": "Protectora Amigos Peludos",
     "direccion": "Av. Libertad 45, Madrid",
     "telefono": "+34 611 987 654",
     "email": "info@amigospeludos.org",
-    "imagenRes": "refugio2"
-    }
+    "imagenRes": "peludos"
+  },
+  {
+    "id": 3,
+    "nombre": "Centro Animal Vida Nueva",
+    "direccion": "C/ Río Duero 87, Valencia",
+    "telefono": "+34 622 543 210",
+    "email": "contacto@vidanueva.es",
+    "imagenRes": "vidanueva"
+  },
+  {
+    "id": 4,
+    "nombre": "Fundación Patitas Felices",
+    "direccion": "Av. Andalucía 204, Sevilla",
+    "telefono": "+34 633 982 014",
+    "email": "info@patitasfelices.org",
+    "imagenRes": "patitas"
+  },
+  {
+    "id": 5,
+    "nombre": "Hogar Animal Esperanza",
+    "direccion": "C/ Prado 55, Zaragoza",
+    "telefono": "+34 644 302 118",
+    "email": "contacto@hogaresperanza.es",
+    "imagenRes": "esperanza"
+  }
 ]
