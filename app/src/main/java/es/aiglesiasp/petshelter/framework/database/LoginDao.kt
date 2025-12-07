@@ -12,4 +12,7 @@ interface LoginDao {
 
     @Query("SELECT * FROM login WHERE email = :email LIMIT 1")
     suspend fun checkUserByEmail(email: String): LoginLocal?
+
+    @Query("SELECT * FROM login WHERE id = :id LIMIT 1")
+    suspend fun getUserById(id: Int): LoginLocal?
 }

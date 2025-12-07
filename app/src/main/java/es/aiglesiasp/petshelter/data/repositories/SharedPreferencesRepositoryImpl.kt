@@ -13,6 +13,7 @@ class SharedPreferencesRepositoryImpl @Inject constructor(
 
     companion object {
         private const val KEY_AUTOLOGIN = "autologin"
+        private const val KEY_PROFILE_ID = "profile_id"
     }
 
     override suspend fun saveAutologin(autologin: Boolean) {
@@ -28,6 +29,22 @@ class SharedPreferencesRepositoryImpl @Inject constructor(
     override suspend fun clearAutologin() {
         prefs.edit {
             remove(KEY_AUTOLOGIN)
+        }
+    }
+
+    override suspend fun saveProfileId(profileId: Int) {
+        prefs.edit {
+            putInt(KEY_PROFILE_ID, profileId)
+        }
+    }
+
+    override suspend fun getProfileId(): Int {
+        return prefs.getInt(KEY_PROFILE_ID, -1)
+    }
+
+    override suspend fun clearProfileId() {
+        prefs.edit {
+            remove(KEY_PROFILE_ID)
         }
     }
 

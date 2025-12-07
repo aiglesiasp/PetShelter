@@ -3,6 +3,7 @@ package es.aiglesiasp.petshelter.data.repositories
 import es.aiglesiasp.petshelter.data.datasources.LoginLocalDataSource
 import es.aiglesiasp.petshelter.domain.repositories.LoginRepository
 import es.aiglesiasp.petshelter.domain.repositories.SharedPreferencesRepository
+import es.aiglesiasp.petshelter.framework.database.LoginLocal
 import es.aiglesiasp.petshelter.ui.screens.login.LoginResult
 import javax.inject.Inject
 
@@ -21,6 +22,7 @@ class LoginRepositoryImpl @Inject constructor(
             user.password != password -> LoginResult.InvalidPassword
             else -> {
                 sharedPreferencesRepository.saveAutologin(true)
+                sharedPreferencesRepository.saveProfileId(user.id)
                 LoginResult.Success(user)
             }
         }
@@ -33,5 +35,9 @@ class LoginRepositoryImpl @Inject constructor(
         password: String
     ): Boolean {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserById(id: Int): LoginLocal? {
+        return loginLocalDataSource.getUserById(id)
     }
 }

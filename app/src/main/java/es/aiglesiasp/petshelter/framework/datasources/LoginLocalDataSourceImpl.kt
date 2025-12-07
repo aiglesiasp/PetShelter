@@ -22,4 +22,8 @@ class LoginLocalDataSourceImpl @Inject constructor(
     ): Boolean {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getUserById(id: Int): LoginLocal? {
+        return loginDao.getUserById(id)
+    }
 }
