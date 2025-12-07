@@ -20,14 +20,22 @@ class SheltersDetailViewModel @Inject constructor(
 
     data class UiState(
         val isLoading: Boolean = true,
-        val shelter: Shelter? = null
+        val shelter: Shelter? = null,
+        val sheltersList: List<Shelter> = emptyList()
     )
 
     fun loadData(shelterId: Int) {
         _uiState.value = _uiState.value.copy(isLoading = true)
         viewModelScope.launch {
             val shelter = sheltersRepository.getShelterById(shelterId)
-            _uiState.value = _uiState.value.copy(isLoading = false, shelter = shelter)
+            val shelters = sheltersRepository.getShelters()
+            val sheltersFiltered = shelters.filter { it.id != shelter?.id }
+
+            _uiState.value = _uiState.value.copy(
+                isLoading = false,
+                shelter = shelter,
+                sheltersList = sheltersFiltered
+            )
         }
     }
 }

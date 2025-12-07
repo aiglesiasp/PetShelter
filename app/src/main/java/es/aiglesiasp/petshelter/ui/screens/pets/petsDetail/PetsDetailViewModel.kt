@@ -20,14 +20,22 @@ class PetsDetailViewModel @Inject constructor(
 
     data class UiState(
         val isLoading: Boolean = true,
-        val pet: Pet? = null
+        val pet: Pet? = null,
+        val petsList: List<Pet> = emptyList()
     )
 
     fun loadData(petId: Int) {
         _uiState.value = _uiState.value.copy(isLoading = true)
         viewModelScope.launch {
             val pet = petsRepository.getPetById(petId)
-            _uiState.value = _uiState.value.copy(isLoading = false, pet = pet)
+            val pets = petsRepository.getPets()
+            val petsFiltered = pets.filter { it.id != pet?.id }
+
+            _uiState.value = _uiState.value.copy(
+                isLoading = false,
+                pet = pet,
+                petsList = petsFiltered
+            )
         }
     }
 }
