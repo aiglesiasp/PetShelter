@@ -5,9 +5,9 @@
     "raza": "Mestiza",
     "tipo": "Perro",
     "edad": "2 años",
-    "descripcion": "Perra muy cariñosa y juguetona, ideal con familias.",
-    "imagenRes": "perro1",
-    "refugio": "Refugio 1"
+    "descripcion": "Perra muy cariñosa y sociable, ideal para familias con niños.",
+    "imagenRes": "luna",
+    "refugio": "Refugio Esperanza"
   },
   {
     "id": 2,
@@ -15,28 +15,169 @@
     "raza": "Pastor Alemán",
     "tipo": "Perro",
     "edad": "4 meses",
-    "descripcion": "Perro activo, necesita ejercicio diario y estímulo mental.",
-    "imagenRes": "perro2",
-    "refugio": "Refugio 2"
+    "descripcion": "Cachorro muy activo, necesita ejercicio y estimulación mental diaria.",
+    "imagenRes": "rocky",
+    "refugio": "Refugio Animalia"
   },
   {
     "id": 3,
-    "nombre": "Misu",
-    "raza": "Europeo común",
+    "nombre": "Kira",
+    "raza": "Labrador Retriever",
     "tipo": "Perro",
-    "edad": "10 meses",
-    "descripcion": "Gata tranquila, le encanta dormir al sol y los mimos.",
-    "imagenRes": "perro3",
-    "refugio": "Refugio 3"
+    "edad": "1 año",
+    "descripcion": "Perra enérgica y muy sociable, amante del agua y de los paseos largos.",
+    "imagenRes": "kira",
+    "refugio": "Refugio Patitas"
   },
   {
     "id": 4,
-    "nombre": "Mimi",
-    "raza": "Gato",
+    "nombre": "Thor",
+    "raza": "Husky Siberiano",
+    "tipo": "Perro",
+    "edad": "3 años",
+    "descripcion": "Husky precioso, independiente, muy juguetón y amante del frío.",
+    "imagenRes": "thor",
+    "refugio": "Refugio Norte"
+  },
+  {
+    "id": 5,
+    "nombre": "Toby",
+    "raza": "Beagle",
+    "tipo": "Perro",
+    "edad": "2 años",
+    "descripcion": "Perro curioso y con muy buen olfato. Ideal para familias activas.",
+    "imagenRes": "toby",
+    "refugio": "Refugio Esperanza"
+  },
+  {
+    "id": 6,
+    "nombre": "Bruno",
+    "raza": "Bulldog Francés",
+    "tipo": "Perro",
+    "edad": "3 años",
+    "descripcion": "Perro calmado y cariñoso, perfecto para piso y vida tranquila.",
+    "imagenRes": "bruno",
+    "refugio": "Refugio Ciudad"
+  },
+  {
+    "id": 7,
+    "nombre": "Misu",
+    "raza": "Europeo Común",
     "tipo": "Gato",
     "edad": "10 meses",
-    "descripcion": "Gata tranquila, le encanta dormir al sol y los mimos.",
-    "imagenRes": "gato1",
-    "refugio": "Refugio 4"
+    "descripcion": "Gata tranquila y observadora, perfecta para pisos y hogares calmados.",
+    "imagenRes": "misu",
+    "refugio": "Refugio Gatunos"
+  },
+  {
+    "id": 8,
+    "nombre": "Mimi",
+    "raza": "Persa",
+    "tipo": "Gato",
+    "edad": "2 años",
+    "descripcion": "Gata muy dulce y cariñosa, necesita cepillado frecuente.",
+    "imagenRes": "mimi",
+    "refugio": "Refugio Gatunos"
+  },
+  {
+    "id": 9,
+    "nombre": "Simba",
+    "raza": "Bengalí",
+    "tipo": "Gato",
+    "edad": "1 año",
+    "descripcion": "Gato muy activo y juguetón, necesita espacio para moverse.",
+    "imagenRes": "simba",
+    "refugio": "Refugio Amigos Felinos"
+  },
+  {
+    "id": 10,
+    "nombre": "Tom",
+    "raza": "Siames",
+    "tipo": "Gato",
+    "edad": "1 año",
+    "descripcion": "Gato muy hablador y curioso, le encanta la compañía humana.",
+    "imagenRes": "tom",
+    "refugio": "Refugio Amigos Felinos"
+  },
+  {
+    "id": 11,
+    "nombre": "Nala",
+    "raza": "Conejo Enano",
+    "tipo": "Conejo",
+    "edad": "6 meses",
+    "descripcion": "Coneja muy dócil, le encanta explorar y comer verduritas.",
+    "imagenRes": "nala",
+    "refugio": "Refugio Pequeños Hogares"
+  },
+  {
+    "id": 12,
+    "nombre": "Bunny",
+    "raza": "Conejo Enano Cabeza de León",
+    "tipo": "Conejo",
+    "edad": "1 año",
+    "descripcion": "Conejo muy sociable y tranquilo, ideal para interiores.",
+    "imagenRes": "bunny",
+    "refugio": "Refugio Pequeños Hogares"
+  },
+  {
+    "id": 13,
+    "nombre": "Pepito",
+    "raza": "Hámster Ruso",
+    "tipo": "Hámster",
+    "edad": "4 meses",
+    "descripcion": "Muy activo por la noche. Ideal como primera mascota.",
+    "imagenRes": "pepito",
+    "refugio": "Refugio MiniZoo"
+  },
+  {
+    "id": 14,
+    "nombre": "Bolita",
+    "raza": "Cobaya",
+    "tipo": "Cobaya",
+    "edad": "6 meses",
+    "descripcion": "Muy tranquila y manejable, perfecta para niños responsables.",
+    "imagenRes": "bolita",
+    "refugio": "Refugio MiniZoo"
+  },
+  {
+    "id": 15,
+    "nombre": "Piolín",
+    "raza": "Canario",
+    "tipo": "Ave",
+    "edad": "1 año",
+    "descripcion": "Canta cada mañana. Necesita jaula amplia y buena iluminación.",
+    "imagenRes": "piolin",
+    "refugio": "Refugio AvesHome"
+  },
+  {
+    "id": 16,
+    "nombre": "Coco",
+    "raza": "Agaporni (Lovebird)",
+    "tipo": "Ave",
+    "edad": "8 meses",
+    "descripcion": "Muy sociable, le encanta estar acompañado y jugar con juguetes.",
+    "imagenRes": "coco",
+    "refugio": "Refugio AvesHome"
+  },
+  {
+    "id": 17,
+    "nombre": "Loki",
+    "raza": "Periquito",
+    "tipo": "Ave",
+    "edad": "1 año",
+    "descripcion": "Periquito muy activo, puede aprender sonidos y silbidos.",
+    "imagenRes": "loki",
+    "refugio": "Refugio AvesHome"
+  },
+  {
+    "id": 18,
+    "nombre": "Manchas",
+    "raza": "Cobaya Abisinia",
+    "tipo": "Cobaya",
+    "edad": "5 meses",
+    "descripcion": "Cobaya muy curiosa, disfruta de la compañía y las verduras frescas.",
+    "imagenRes": "manchas",
+    "refugio": "Refugio MiniZoo"
   }
 ]
+
